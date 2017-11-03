@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
@@ -9,42 +9,54 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
+import {connect} from 'react-redux';
+import { emailChanged, passwordChanged, loginUser} from '../actions';
 
-class LoginPage extends Component<{}> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    }
+
+class LoginPage extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     email: '',
+  //     password: ''
+  //   }
+  // }
+
+  // _userLogin = (props) => {
+  //   console.log("Here\n");
+  //   console.log(this.state.email + "\n");
+  //   console.log(this.state.password + "\n");
+  //   var myRequest = new Request('http://65db2b5d.ngrok.io/api/login', {method: 'POST', body: JSON.stringify({
+  //     email: this.state.email,
+  //     password: this.state.password
+  //   })
+  // });
+  //   fetch(myRequest)
+  //   .then(function(response) {
+  //       if(response.status == 200) {
+  //         var responseString = response._bodyText.toString();
+  //         if (responseString.includes('200')) alert("Login Successful");
+  //         else alert("Login Failed");
+  //       }
+  //       else throw new Error('API fault detected.');
+  //   })
+  //   .then(function(response) {
+  //       console.debug(response);
+  //   })
+  //   .catch(function(error) {
+  //       console.log(error);
+  //   });
+  // }
+  onEmailChange(text) {
+    this.props.emailChanged(text);
   }
-
-  _userLogin = (props) => {
-    console.log("Here\n");
-    console.log(this.state.email + "\n");
-    console.log(this.state.password + "\n");
-    var myRequest = new Request('http://65db2b5d.ngrok.io/api/login', {method: 'POST', body: JSON.stringify({
-      email: this.state.email,
-      password: this.state.password
-    })
-  });
-    fetch(myRequest)
-    .then(function(response) {
-        if(response.status == 200) {
-          var responseString = response._bodyText.toString();
-          if (responseString.includes('200')) alert("Login Successful");
-          else alert("Login Failed");
-        }
-        else throw new Error('API fault detected.');
-    })
-    .then(function(response) {
-        console.debug(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
   }
-
+  userLogin() {
+    const {email, password} = this.props;
+    this.props.loginUser({email, password});
+  }
   render() {
 
     return (
@@ -56,23 +68,32 @@ class LoginPage extends Component<{}> {
         <TextInput style = {styles.input}
           placeholder = "Email"
           placeholderTextColor = 'white'
-          onChangeText = {(email) => this.setState({email})}
-          value={this.state.text}
+          onChangeText = {this.onEmailChange.bind(this)}
+          value={this.props.email}
         />
         <TextInput style = {styles.input}
           secureTextEntry = {true}
           placeholder = "Password"
           placeholderTextColor = 'white'
-          onChangeText = {(password) => this.setState({password})}
-          value={this.state.text}
+          onChangeText = {this.onPasswordChange.bind(this)}
+          value={this.props.password}
         />
         <TouchableOpacity style={styles.inputButton}
-          onPress={this._userLogin}
+          onPress={this.userLogin.bind(this)}
         >
         <Text style={styles.inputButtonText}>
           Login
         </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.inputButton}
+          onPress={()=> Actions.register()}
+        >
+        <Text style={styles.inputButtonText}>
+          Register
+        </Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -111,5 +132,14 @@ const styles = StyleSheet.create({
     fontWeight: '800'
   }
 });
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error} = auth;
+
+  return { email, password, error};
+};
+
+export default connect(mapStateToProps, {
+  emailChanged, passwordChanged, loginUser
+})(LoginPage);
 // Exporting Component
-export default LoginPage;

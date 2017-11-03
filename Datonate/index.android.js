@@ -9,8 +9,12 @@ import Payments from './src/components/Payments';
 import TextAnnotation from './src/components/TextAnnotation';
 //import { StackNavigator } from 'react-navigation';
 
-
-/*
+//import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducers from './src/reducers';
+import Router from './src/Router';/*
 const App = StackNavigator({
   Login: { screen: LoginPage },
   Registration: { screen: Registration },
@@ -26,7 +30,7 @@ import {
   View
 } from 'react-native';
 
-import Swiper from 'react-native-swiper';
+//import Swiper from 'react-native-swiper';
 
 var styles = StyleSheet.create({
   wrapper: {
@@ -41,12 +45,13 @@ var styles = StyleSheet.create({
 
 var swiper = React.createClass({
   render: function() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     return (
-      <Swiper style={styles.wrapper} showsButtons={false} showsPagination={false}>
-      <LoginPage />
-      <Registration />
-      <PasswordReset />
-      </Swiper>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+        <Router />
+        </View>
+      </Provider>
     )
   }
 })

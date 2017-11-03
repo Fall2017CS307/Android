@@ -3,26 +3,38 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,
+  ScrollView,
   TextInput,
   Image,
   Button,
   TouchableOpacity
 } from 'react-native';
+import {connect} from 'react-redux';
+import { firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser} from '../actions';
 
 class Registration extends Component {
-  constructor(props) {
-  super(props);
-  this.state = {
-    fName: '',
-    lName: '',
-    email: '',
-    password: ''
+  onFirstNameChange(text) {
+    this.props.firstNameChanged(text);
   }
-}
+  onLastNameChange(text) {
+    this.props.lastNameChanged(text);
+  }
+  onNumberChange(text) {
+    this.props.numberChanged(text);
+  }
+  onRegEmailChange(text) {
+    this.props.regEmailChanged(text);
+  }
+  onRegPassWordChange(text) {
+    this.props.regPassWordChanged(text);
+  }
+  userRegister(){
+    const {firstName, lastName, number, regEmail, regPassword} = this.props;
+    this.props.registerUser({firstName, lastName, number, regEmail, regPassword});
+  }
   render(){
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
     <Image
     style={styles.logo}
     source={require('../images/logo.png')}
@@ -30,46 +42,47 @@ class Registration extends Component {
       <TextInput style = {styles.input}
         placeholder = "First Name"
         placeholderTextColor = 'white'
-        onChangeText = {(fName) => this.setState({fName})}
-        value={this.state.text}
+        onChangeText = {this.onFirstNameChange.bind(this)}
+        value={this.props.firstName}
       />
       <TextInput style = {styles.input}
         placeholder = "Last Name"
         placeholderTextColor = 'white'
-        onChangeText = {(lName) => this.setState({lName})}
-        value={this.state.text}
+        onChangeText = {this.onLastNameChange.bind(this)}
+        value={this.props.lastName}
       />
+      <TextInput style={styles.input}
+        placeholder = "Phone number"
+        keyboardType = 'numeric'
+        onChangeText = {this.onNumberChange.bind(this)}
+        value = {this.props.number}
+        maxLength = {10}  //setting limit of input
+        />
       <TextInput style = {styles.input}
         placeholder = "Email"
         placeholderTextColor = 'white'
-        onChangeText = {(email) => this.setState({email})}
-        value={this.state.text}
+        onChangeText = {this.onRegEmailChange.bind(this)}
+        value={this.props.regEmail}
       />
       <TextInput style = {styles.input}
         secureTextEntry = {true}
         placeholder = "Password"
         placeholderTextColor = 'white'
-        onChangeText = {(password) => this.setState({password})}
-        value={this.state.text}
+        onChangeText = {this.onRegPassWordChange.bind(this)}
+        value={this.props.regPassword}
       />
       <TouchableOpacity style={styles.inputButton}
-      >
+        onPress={this.userRegister.bind(this)}>
       <Text style={styles.inputButtonText}>
         Register
       </Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#263238',
-    alignItems: 'center'
-  },
   input: {
     paddingLeft: '6%',
     width: '80%',
@@ -94,6 +107,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontWeight: '800'
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#263238',
+    alignItems: 'center'
   }
 });
-export default Registration;
+const mapStateToProps = ({ auth }) => {
+  const { firstName, lastName, number, regEmail, regPassword} = auth;
+
+  return { firstName, lastName, number, regEmail, regPassword};
+};
+export default connect(mapStateToProps, {
+  firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser
+})(Registration);
