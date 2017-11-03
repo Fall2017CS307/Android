@@ -143,6 +143,7 @@ export const loginUser = ({email, password}) => {
       });
       fetch(myRequest)
       .then(function(response) {
+          console.log(response);
           if(response.status == 200) {
             var responseString = response._bodyText.toString();
             if (responseString.includes('200')){
