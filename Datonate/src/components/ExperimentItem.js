@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
 import { CardSection } from './common';
-import * as actions from '../actions';
+import {connect} from 'react-redux';
+import {selectExperiment} from '../actions';
 
 class ExperimentItem extends Component{
   renderDescription(){
@@ -14,6 +15,10 @@ class ExperimentItem extends Component{
         </CardSection>
       );
   }
+  onSelectPress() {
+    const {id} = this.props.experiment;
+    this.props.selectExperiment(id);
+  }
   render() {
     const {titleStyle} = styles;
     const {description} = this.props.experiment;
@@ -25,6 +30,9 @@ class ExperimentItem extends Component{
       </Text>
     </CardSection>
     {this.renderDescription()}
+        <Button onPress={this.onSelectPress.bind(this)}>
+          Login
+        </Button>
     </View>
     );
   }
@@ -36,7 +44,5 @@ const styles = {
     paddingLeft: 15
   }
 }
-
-
 
 export default ExperimentItem;

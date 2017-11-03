@@ -24,3 +24,9 @@ const passExperiments = (dispatch, response) => {
     payload: response
   });
 };
+
+export const selectExperiment = (dispatch, id) => {
+  return(dispatch)=> {
+    
+  };
+}

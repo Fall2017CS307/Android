@@ -92,19 +92,41 @@ export const registerUser = ({firstName, lastName, number, regEmail, regPassword
     });
     fetch(request)
     .then(function(response) {
-      console.log(response);
-      if(response.status == 200) {
-        var responseString = response._bodyText.toString();
-        if (responseString.includes('200')) {
-          Actions.experimentList();
-          registrationSucess(dispatch, regEmail);
-          alert("Registration Successful");
-        }
-        else {
-          alert("Registration Failed");
-        }
+
+
+      // if(response.status == 200) {
+      //   var responseString = response._bodyText.toString();
+      //   if (responseString.includes('200')) {
+      //     Actions.experimentList();
+      //     registrationSucess(dispatch, regEmail);
+      //     alert("Registration Successful");
+      //   }
+      //   else {
+      //     alert("Registration Failed");
+      //   }
+      // }
+      // else throw new Error('API fault detected.');
+      if(response.status == 200){
+        console.log(response);
+      response.text().then(function(responseText){
+         var toCheck = JSON.parse(responseText);
+         if(toCheck.status == 200){
+           Actions.experimentList();
+                console.log(toCheck);
+               registrationSucess(dispatch, regEmail);
+                alert("Registration Successful");
+         }
+         else {
+           alert("Registration Failed");
+           registrationFailure(dispatch);
+         }
+
+       }).catch(function(error){
+         alert("Error");
+       });
+      }else {
+        throw new Error('API fault detected.');
       }
-      else throw new Error('API fault detected.');
   })
     .catch(function(error){
       //console.log(this.state.firstName);
@@ -141,35 +163,80 @@ export const loginUser = ({email, password}) => {
         password: password
         })
       });
+      // fetch(myRequest)
+      // .then(function(response) {
+      //     console.log(response);
+      //     if(response.status == 200) {
+      //       var responseString = response._bodyText.toString();
+      //       if (responseString.includes('200')){
+      //         Actions.experimentList();
+      //         loginUserSuccess(dispatch);
+      //
+      //       }
+      //       else{
+      //         alert("Failure");
+      //         loginUserFailure(dispatch);
+      //       }
+      //     }
+      //     else throw new Error('API fault detected.');
+      //   })
+      // .then(function(response) {
+      //     console.debug(response);
+      //   })
+      // .catch(function(error) {
+      //     console.log(error);
+      //   });
       fetch(myRequest)
       .then(function(response) {
-          console.log(response);
-          if(response.status == 200) {
-            var responseString = response._bodyText.toString();
-            if (responseString.includes('200')){
-              Actions.experimentList();
-              loginUserSuccess(dispatch);
 
-            }
-            else{
-              alert("Failure");
-              loginUserFailure(dispatch);
-            }
-          }
-          else throw new Error('API fault detected.');
-        })
-      .then(function(response) {
-          console.debug(response);
-        })
-      .catch(function(error) {
-          console.log(error);
-        });
+
+        // if(response.status == 200) {
+        //   var responseString = response._bodyText.toString();
+        //   if (responseString.includes('200')) {
+        //     Actions.experimentList();
+        //     registrationSucess(dispatch, regEmail);
+        //     alert("Registration Successful");
+        //   }
+        //   else {
+        //     alert("Registration Failed");
+        //   }
+        // }
+        // else throw new Error('API fault detected.');
+        if(response.status == 200){
+          console.log(response);
+        response.text().then(function(responseText){
+           var toCheck = JSON.parse(responseText);
+           if(toCheck.status == 200){
+             Actions.experimentList();
+                  console.log(toCheck);
+                  var id = toCheck.id;
+                 loginUserSuccess(dispatch, id);
+                  alert("LogIn Successful");
+           }
+           else {
+             alert("LogIn Failed");
+             loginUserFailure(dispatch);
+           }
+
+         }).catch(function(error){
+           alert("Error");
+         });
+        }else {
+          throw new Error('API fault detected.');
+        }
+    })
+      .catch(function(error){
+        //console.log(this.state.firstName);
+        alert("Error caught");
+        console.log(error);
+      });
   };
 };
 
-const loginUserSuccess = (dispatch) => {
+const loginUserSuccess = (dispatch, id) => {
   dispatch({
     type: LOGIN_USER_SUCCESS
+    payload: id;
   });
 }
 
