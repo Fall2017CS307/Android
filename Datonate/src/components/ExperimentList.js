@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ListView, View, Text} from 'react-native';
+import {ListView, View, Text, DrawerLayoutAndroid} from 'react-native';
 import ExperimentItem from './ExperimentItem';
 import {viewExperiments} from '../actions';
 
@@ -22,7 +22,17 @@ class ExperimentList extends Component{
       //console.log("Printing 55");
       //console.log(this.props.experiments.api);
       this.dataSource = ds.cloneWithRows(this.props.experiments);
+      var navigationView = (
+        <View style={{flex: 1, backgroundColor: '#fff'}}>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Experiments</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Log out</Text>
+        </View>
+      );
       return(
+        <DrawerLayoutAndroid
+     drawerWidth={300}
+     drawerPosition={DrawerLayoutAndroid.positions.Left}
+     renderNavigationView={() => navigationView}>
       <View style={{ backgroundColor: '#263238', flex: 1,
       justifyContent: 'center', backgroundColor: '#263238', alignItems: 'center' }}>
       <Text style={{ fontSize: 25, color: 'white', marginTop: '5%', marginBottom: '5%' }}>Experiments</Text>
@@ -31,6 +41,7 @@ class ExperimentList extends Component{
         renderRow = {this.renderRow}
         />
       </View>
+    </DrawerLayoutAndroid>
       );
     }
     return(
