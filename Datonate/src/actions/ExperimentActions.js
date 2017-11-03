@@ -8,10 +8,9 @@ export const viewExperiments = () => {
 
   fetch(url)
   .then(function(response){
-    var resp = response.json();
-
-
-    passExperiments(dispatch, resp);
+    response.text().then(function(responseText){
+      passExperiments(dispatch, JSON.parse(responseText).experiments);
+    })
   }).catch(function(error){
     console.log(error);
   });
@@ -19,10 +18,9 @@ export const viewExperiments = () => {
 };
 
 const passExperiments = (dispatch, response) => {
-  console.log("In ExpList Line 22");
   console.log(response);
-  return {
+  dispatch( {
     type: PASS_EXPERIMENTS,
     payload: response
-  };
+  });
 };

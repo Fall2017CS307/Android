@@ -16,8 +16,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: '',
-  firstName: '',
-  proceedExp: 'no'
+  firstName: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
