@@ -5,6 +5,8 @@ import LoginPage from './src/components/LoginPage';
 import Registration from './src/components/Registration';
 //import Landing from './src/components/Landing';
 import PasswordReset from './src/components/PasswordReset';
+import Payments from './src/components/Payments';
+import TextAnnotation from './src/components/TextAnnotation';
 //import { StackNavigator } from 'react-navigation';
 
 
