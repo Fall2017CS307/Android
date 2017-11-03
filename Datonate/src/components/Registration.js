@@ -54,6 +54,7 @@ class Registration extends Component {
       <TextInput style={styles.input}
         placeholder = "Phone number"
         keyboardType = 'numeric'
+        placeholderTextColor = 'white'
         onChangeText = {this.onNumberChange.bind(this)}
         value = {this.props.number}
         maxLength = {10}  //setting limit of input
