@@ -30,9 +30,6 @@ class ExperimentItem extends Component{
       </Text>
     </CardSection>
     {this.renderDescription()}
-        <Button onPress={this.onSelectPress.bind(this)}>
-          Login
-        </Button>
     </View>
     );
   }
@@ -45,7 +42,7 @@ const styles = {
     height: '4%',
     marginBottom: '2%',
     color: 'black',
-    
+
   }
 }
 

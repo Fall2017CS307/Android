@@ -2,13 +2,15 @@ import {
   PASS_EXPERIMENTS,
 } from '../actions/types'
 
-export const viewExperiments = () => {
+export const viewExperiments = (id) => {
   return(dispatch) => {
-  var url = "http://datonate.com:5000/api/getExperiments";
+    console.log(id);
+  var qur = "http://datonate.com:5000/api/getExperiments/" + id;
 
-  fetch(url)
+  fetch(qur)
   .then(function(response){
     response.text().then(function(responseText){
+      console.log(responseText);
       passExperiments(dispatch, JSON.parse(responseText).experiments);
     })
   }).catch(function(error){
@@ -27,6 +29,6 @@ const passExperiments = (dispatch, response) => {
 
 export const selectExperiment = (dispatch, id) => {
   return(dispatch)=> {
-    
+
   };
 }

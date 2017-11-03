@@ -235,8 +235,8 @@ export const loginUser = ({email, password}) => {
 
 const loginUserSuccess = (dispatch, id) => {
   dispatch({
-    type: LOGIN_USER_SUCCESS
-    payload: id;
+    type: LOGIN_USER_SUCCESS,
+    payload: id
   });
 }
 

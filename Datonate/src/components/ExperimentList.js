@@ -5,14 +5,14 @@ import ExperimentItem from './ExperimentItem';
 import {viewExperiments} from '../actions';
 
 class ExperimentList extends Component{
-  componentWillMount() {
-    this.props.viewExperiments();
 
-  }
   renderRow(experiment) {
     return <ExperimentItem experiment={experiment}/>;
   }
   render(){
+    const {id} = this.props;
+    console.log(id);
+    this.props.viewExperiments(id);
     console.log(this.props.proceedExp);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 != r2
@@ -42,10 +42,12 @@ class ExperimentList extends Component{
       );
     }
 }
-const mapStateToProps = ({ exp }) => {
+const mapStateToProps = ({ exp, auth }) => {
   const { experiments, proceedExp } = exp;
+  const { id }= auth;
   console.log(exp.experiments);
   console.log(exp.proceedExp);
-  return {experiments, proceedExp};
+  console.log(auth.id);
+  return {experiments, proceedExp, id};
 }
 export default connect(mapStateToProps, {viewExperiments})(ExperimentList);
