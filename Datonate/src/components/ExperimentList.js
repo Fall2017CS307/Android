@@ -23,10 +23,14 @@ class ExperimentList extends Component{
       //console.log(this.props.experiments.api);
       this.dataSource = ds.cloneWithRows(this.props.experiments);
       return(
+      <View style={{ backgroundColor: '#263238', flex: 1,
+      justifyContent: 'center', backgroundColor: '#263238', alignItems: 'center' }}>
+      <Text style={{ fontSize: 25, color: 'white', marginTop: '5%', marginBottom: '5%' }}>Experiments</Text>
       <ListView
         dataSource={this.dataSource}
         renderRow = {this.renderRow}
         />
+      </View>
       );
     }
     return(
