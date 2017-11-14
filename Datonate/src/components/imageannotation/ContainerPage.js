@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagePiece from './ImagePiece';
+import Swiper from 'react-native-swiper';
 
 
 class ConntainerPage extends Component {
@@ -22,9 +23,11 @@ class ConntainerPage extends Component {
   render() {
 
     return (
-      <ScrollableView style={styles.container}>
-
-      </ScrollableView>
+      <Swiper style={styles.container}>
+        <View>
+          <ImagePiece></ImagePiece>
+        </View>
+      </Swiper>
     );
   }
 }
