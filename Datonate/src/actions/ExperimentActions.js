@@ -1,6 +1,8 @@
 import {
   PASS_EXPERIMENTS,
-} from '../actions/types'
+  VIEW_EXPERMENT
+} from '../actions/types';
+import { Actions } from 'react-native-router-flux';
 
 export const viewExperiments = (id) => {
   return(dispatch) => {
@@ -29,8 +31,17 @@ const passExperiments = (dispatch, response) => {
   });
 };
 
-export const selectExperiment = (dispatch, id) => {
+export const selectExperiment = (dispatch, experiment) => {
   return(dispatch)=> {
-
+    Actions.viewExperiment();
+    addExpToState(dispatch, experiment);
   };
-}
+};
+
+
+const addExpToState = (dispatch, experiment) => {
+  dispatch({
+    type: VIEW_EXPERMENT,
+    payload: experiment
+  });
+};
