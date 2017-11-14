@@ -19,6 +19,12 @@ const RouterComponent = () => {
           title="Experiments available"
           hideNavBar= {true}
           />
+          <Scene key="viewExperiment"
+          component={ExperimentList}
+          titleStyle={{alignSelf: 'center'}}
+          title="Experiment Details"
+          hideNavBar= {true}
+          />
         </Scene>
       </Scene>
     </Router>

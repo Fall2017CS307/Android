@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
-import { Card, CardSection } from './common';
+import { Card, CardSection, Button } from './common';
 import {connect} from 'react-redux';
 import {selectExperiment} from '../actions';
 
 class ExperimentItem extends Component{
+  onSelectPress() {
+    const {experiment} = this.props;
+    this.props.selectExperiment(experiment);
+  }
   renderDescription(){
     const { titleStyle } = styles;
     const {experiment}=this.props;
@@ -20,12 +24,11 @@ class ExperimentItem extends Component{
           { experiment.price }
           </Text>
         </CardSection>
+        <Button onPress={this.onSelectPress.bind(this)}>
+          Select Experiment
+        </Button>
         </Card>
       );
-  }
-  onSelectPress() {
-    const {id} = this.props.experiment;
-    this.props.selectExperiment(id);
   }
   render() {
     const {titleStyle} = styles;
@@ -50,4 +53,13 @@ const styles = {
   }
 }
 
-export default ExperimentItem;
+const mapStateToProps = ({ exp, auth }) => {
+  const { experiments, proceedExp } = exp;
+  const { id }= auth;
+  console.log(exp.experiments);
+  console.log(exp.proceedExp);
+  console.log(auth.id);
+  return {experiments, proceedExp, id};
+}
+
+export default connect(mapStateToProps, {selectExperiment})(ExperimentItem);
