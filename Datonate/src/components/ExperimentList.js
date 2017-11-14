@@ -29,13 +29,12 @@ class ExperimentList extends Component{
         </View>
       );
       return(
-        <DrawerLayoutAndroid
+    <DrawerLayoutAndroid
      drawerWidth={300}
      drawerPosition={DrawerLayoutAndroid.positions.Left}
      renderNavigationView={() => navigationView}>
-      <View style={{ backgroundColor: '#263238', flex: 1,
-      justifyContent: 'center', backgroundColor: '#263238', alignItems: 'center' }}>
-      <Text style={{ fontSize: 25, color: 'white', marginTop: '5%', marginBottom: '5%' }}>Experiments</Text>
+      <View>
+       <Text style={{ fontSize: 25, color: 'black', marginTop: '5%', marginBottom: '5%' }}>Experiments</Text>
       <ListView
         dataSource={this.dataSource}
         renderRow = {this.renderRow}

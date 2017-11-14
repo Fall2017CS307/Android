@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
 import {Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
-import { CardSection } from './common';
+import { Card, CardSection } from './common';
 import {connect} from 'react-redux';
 import {selectExperiment} from '../actions';
 
 class ExperimentItem extends Component{
   renderDescription(){
+    const { titleStyle } = styles;
     const {experiment}=this.props;
       return (
+        <Card>
         <CardSection>
-          <Text style={{ flex: 1, color: 'black', fontSize: 15 }}>
-            { experiment.price }
+          <Text>
+          { experiment.description }
           </Text>
         </CardSection>
+        <CardSection>
+          <Text>
+          { experiment.price }
+          </Text>
+        </CardSection>
+        </Card>
       );
   }
   onSelectPress() {
@@ -24,11 +32,7 @@ class ExperimentItem extends Component{
     const {description} = this.props.experiment;
     return (
     <View>
-    <CardSection>
-      <Text style={titleStyle}>
-        {description}
-      </Text>
-    </CardSection>
+
     {this.renderDescription()}
     </View>
     );

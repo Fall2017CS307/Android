@@ -10,8 +10,10 @@ export const viewExperiments = (id) => {
   fetch(qur)
   .then(function(response){
     response.text().then(function(responseText){
-      console.log(responseText);
+      //console.log(responseText);
+      console.log("Error ke Pehle");
       passExperiments(dispatch, JSON.parse(responseText).experiments);
+      console.log("Error ke baad");
     })
   }).catch(function(error){
     console.log(error);
