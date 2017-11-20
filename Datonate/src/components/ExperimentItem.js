@@ -7,7 +7,7 @@ import {selectExperiment} from '../actions';
 class ExperimentItem extends Component{
   onSelectPress() {
     const {experiment} = this.props;
-    console.log(experiment);
+    //console.log(experiment);
     this.props.selectExperiment(experiment);
   }
   renderDescription(){

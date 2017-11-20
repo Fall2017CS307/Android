@@ -11,3 +11,4 @@ export const REG_SUCCESS = 'reg_success';
 export const REG_FAILURE = 'reg_failure';
 export const PASS_EXPERIMENTS = 'pass_experiments';
 export const VIEW_EXPERIMENT = 'view_experiment';
+export const ASSIGN_EXPERIMENT = 'assign_experiment';
