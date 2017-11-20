@@ -6,30 +6,17 @@ import {viewExperiments} from '../actions';
 
 class ExperimentList extends Component{
 
-  componentDidMount(){
-    const {id} = this.props;
-    console.log(this.props);
-    this.props.viewExperiments(id);
-    console.log("After Fetch");
-  }
-
   renderRow(experiment) {
     return <ExperimentItem experiment={experiment}/>;
   }
   render(){
-    console.log(this.props);
     const {id} = this.props;
-    const {experiments} = this.props;
-    //console.log(experiments);
-    //console.log(id);
-    //console.log(this.props.proceedExp);
+    console.log(id);
+    this.props.viewExperiments(id);
+    console.log(this.props.proceedExp);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 != r2
     });
-    if(this.props.experiments == null){
-      this.props.viewExperiments(id);
-      console.log("IN");
-    }
     //console.log("Print kar le bro");
     if(this.props.experiments!==null){
       //console.log("Printing 55");
@@ -46,9 +33,9 @@ class ExperimentList extends Component{
      drawerWidth={300}
      drawerPosition={DrawerLayoutAndroid.positions.Left}
      renderNavigationView={() => navigationView}>
-      <View>
-       <Text style={{ fontSize: 25, color: 'black', marginTop: '5%', marginBottom: '5%' }}>Experiments</Text>
-      <ListView
+      <View style={{ backgroundColor: '#263238', alignItems: 'center' }}>
+       <Text style={{ fontSize: 35, color: 'white', marginTop: '8%', marginBottom: '5%', textAlign: 'center' }}>Experiments</Text>
+      <ListView style={{ width: '95%'}}
         dataSource={this.dataSource}
         renderRow = {this.renderRow}
         />
@@ -61,16 +48,16 @@ class ExperimentList extends Component{
       //   dataSource={this.dataSource}
       //   renderRow = {this.renderRow}
       //   />
-      <Text> TESaaT </Text>
+      <Text> Login Successful </Text>
       );
     }
 }
 const mapStateToProps = ({ exp, auth }) => {
   const { experiments, proceedExp } = exp;
   const { id }= auth;
-  //console.log(exp.experiments);
-  //console.log(exp.proceedExp);
-  //console.log(auth.id);
+  console.log(exp.experiments);
+  console.log(exp.proceedExp);
+  console.log(auth.id);
   return {experiments, proceedExp, id};
 }
 export default connect(mapStateToProps, {viewExperiments})(ExperimentList);
