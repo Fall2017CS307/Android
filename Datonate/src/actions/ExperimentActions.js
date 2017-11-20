@@ -49,3 +49,17 @@ const addExpToState = (dispatch, experiment) => {
     payload: experiment
   });
 };
+
+export const assignExperiment = (userID, experimentID) => {
+  return (dispatch) => {
+    var qur = "http://datonate.com:5000/api/" + userID + "/assign/" + experimentID;
+    fetch(qur)
+    .then(function(response){
+        response.text().then(function(responseText){
+          console.log(JSON.parse(responseText))
+        })
+    }).catch(function(error){
+      console.log(error);
+    });
+  };
+};
