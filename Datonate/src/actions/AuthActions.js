@@ -203,12 +203,12 @@ export const loginUser = ({email, password}) => {
         // }
         // else throw new Error('API fault detected.');
         if(response.status == 200){
-          console.log(response);
+          //console.log(response);
         response.text().then(function(responseText){
            var toCheck = JSON.parse(responseText);
            if(toCheck.status == 200){
              Actions.experimentList();
-                  console.log(toCheck);
+                  //console.log(toCheck);
                   var id = toCheck.id;
                  loginUserSuccess(dispatch, id);
                   alert("LogIn Successful");
@@ -219,6 +219,7 @@ export const loginUser = ({email, password}) => {
            }
 
          }).catch(function(error){
+           console.log(error);
            alert("Error");
          });
         }else {

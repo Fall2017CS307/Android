@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
+import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import { Card, CardSection, Button } from './common';
 import {connect} from 'react-redux';
 import {selectExperiment} from '../actions';
@@ -7,11 +7,13 @@ import {selectExperiment} from '../actions';
 class ExperimentItem extends Component{
   onSelectPress() {
     const {experiment} = this.props;
+    console.log(experiment);
     this.props.selectExperiment(experiment);
   }
   renderDescription(){
     const { titleStyle } = styles;
     const {experiment}=this.props;
+    console.log(experiment);
       return (
         <Card>
         <CardSection>
@@ -56,9 +58,9 @@ const styles = {
 const mapStateToProps = ({ exp, auth }) => {
   const { experiments, proceedExp } = exp;
   const { id }= auth;
-  console.log(exp.experiments);
-  console.log(exp.proceedExp);
-  console.log(auth.id);
+  //console.log(exp.experiments);
+  //console.log(exp.proceedExp);
+  //console.log(auth.id);
   return {experiments, proceedExp, id};
 }
 

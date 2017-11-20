@@ -6,17 +6,30 @@ import {viewExperiments} from '../actions';
 
 class ExperimentList extends Component{
 
+  componentDidMount(){
+    const {id} = this.props;
+    console.log(this.props);
+    this.props.viewExperiments(id);
+    console.log("After Fetch");
+  }
+
   renderRow(experiment) {
     return <ExperimentItem experiment={experiment}/>;
   }
   render(){
+    console.log(this.props);
     const {id} = this.props;
-    console.log(id);
-    this.props.viewExperiments(id);
-    console.log(this.props.proceedExp);
+    const {experiments} = this.props;
+    //console.log(experiments);
+    //console.log(id);
+    //console.log(this.props.proceedExp);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 != r2
     });
+    if(this.props.experiments == null){
+      this.props.viewExperiments(id);
+      console.log("IN");
+    }
     //console.log("Print kar le bro");
     if(this.props.experiments!==null){
       //console.log("Printing 55");
@@ -55,9 +68,9 @@ class ExperimentList extends Component{
 const mapStateToProps = ({ exp, auth }) => {
   const { experiments, proceedExp } = exp;
   const { id }= auth;
-  console.log(exp.experiments);
-  console.log(exp.proceedExp);
-  console.log(auth.id);
+  //console.log(exp.experiments);
+  //console.log(exp.proceedExp);
+  //console.log(auth.id);
   return {experiments, proceedExp, id};
 }
 export default connect(mapStateToProps, {viewExperiments})(ExperimentList);
