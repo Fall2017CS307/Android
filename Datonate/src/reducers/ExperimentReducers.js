@@ -1,6 +1,6 @@
 import {
   PASS_EXPERIMENTS,
-  VIEW_EXPERMENT
+  VIEW_EXPERIMENT
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -12,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PASS_EXPERIMENTS:
       return {...state, experiments: action.payload, proceedExp: 'go'};
-    case VIEW_EXPERMENT:
+    case VIEW_EXPERIMENT:
       return {...state, currentExperiment: action.payload};
 
     default:

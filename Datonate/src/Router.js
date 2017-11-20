@@ -3,6 +3,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginPage from './components/LoginPage';
 import Registration from './components/Registration';
 import ExperimentList from './components/ExperimentList';
+import ViewExperiment from './components/ViewExperiment';
 
 const RouterComponent = () => {
   return (
@@ -20,7 +21,7 @@ const RouterComponent = () => {
           hideNavBar= {true}
           />
           <Scene key="viewExperiment"
-          component={ExperimentList}
+          component={ViewExperiment}
           titleStyle={{alignSelf: 'center'}}
           title="Experiment Details"
           hideNavBar= {true}
