@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ListView, View, Text, DrawerLayoutAndroid} from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
 import {viewExperiments} from '../actions';
 
@@ -46,12 +47,28 @@ class ExperimentList extends Component{
      drawerWidth={300}
      drawerPosition={DrawerLayoutAndroid.positions.Left}
      renderNavigationView={() => navigationView}>
-      <View style={{ backgroundColor: '#263238', alignItems: 'center' }}>
-       <Text style={{ fontSize: 35, color: 'white', marginTop: '8%', marginBottom: '5%', textAlign: 'center' }}>Experiments</Text>
-      <ListView style={{ width: '95%'}}
-        dataSource={this.dataSource}
-        renderRow = {this.renderRow}
-        />
+      <View style={{ backgroundColor: '#263238' }}>
+      <Header>
+          <Left>
+            <Button transparent>
+              <Icon name='list' />
+            </Button>
+          </Left>
+          <Body>
+            <Title style={{ fontSize: 20 }}>Experiments</Title>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name='funnel' /><Text style={{ fontSize: 15, color: 'white' }}>  Filter</Text>
+            </Button>
+          </Right>
+        </Header>
+        <View style={{ alignItems: 'center' }}>
+        <ListView style={{ width: '95%' }}
+          dataSource={this.dataSource}
+          renderRow = {this.renderRow}
+          />
+        </View>
       </View>
     </DrawerLayoutAndroid>
       );
