@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, TouchableWithoutFeedback, View, LayoutAnimation, TouchableOpacity } from 'react-native';
-import { Card, CardSection, Button } from './common';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Icon, Left, Body, Right } from 'native-base';
+import { CardSection, Button } from './common'; //Card
 import {connect} from 'react-redux';
 import {selectExperiment} from '../actions';
 
@@ -13,21 +14,45 @@ class ExperimentItem extends Component{
     const { titleStyle, experimenttitle, experimentprice, select } = styles;
     const {experiment}=this.props;
       return (
-        <Card>
-        <CardSection>
-          <Text style={experimenttitle}>
-            { experiment.description }
-          </Text>
-        </CardSection>
-        <CardSection>
-          <Text style={experimentprice}>
-          Experiment gives ${ experiment.price }
-          </Text>
-        </CardSection>
-        <Button onPress={this.onSelectPress.bind(this)}>
-          SELECT
-        </Button>
-        </Card>
+        <View>
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text style={{ fontSize: 22, color: 'black' }}>{experiment.description}{"\n"}</Text>
+                  <Text>
+                    <Icon name="person" />
+                    <Text note style={{ fontSize: 18, color: 'black' }}>  By [Experimenter]</Text>
+                  </Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Text>
+                  <Icon active name="cash" style={{ fontSize: 19, color: '#85bb65' }} />
+                  <Text style={{ fontSize: 18, color: 'black' }}>  ${ experiment.price }</Text>
+                </Text>
+              </Left>
+              <Body>
+                <Text>
+                  <Text>     </Text>
+                  <Icon active name="play" style={{ fontSize: 19, color: '#007FFF' }} />
+                  <Text style={{ fontSize: 18, color: '#007FFF' }}>  Start</Text>
+                </Text>
+              </Body>
+              <Right>
+                <Text>
+                  <Icon active name="time" style={{ fontSize: 19, color: '#FFCC00' }} />
+                  <Text> </Text>
+                  <Text style={{ fontSize: 18, color: 'black' }}>11/28</Text>
+                </Text>
+              </Right>
+            </CardItem>
+          </Card>
+        </Content>
+        </View>
       );
   }
   render() {
@@ -41,6 +66,24 @@ class ExperimentItem extends Component{
     );
   }
 }
+
+/*
+  <Card>
+  <CardSection>
+    <Text style={experimenttitle}>
+      { experiment.description }
+    </Text>
+  </CardSection>
+  <CardSection>
+    <Text style={experimentprice}>
+    Experiment gives ${ experiment.price }
+    </Text>
+  </CardSection>
+  <Button onPress={this.onSelectPress.bind(this)}>
+    SELECT
+  </Button>
+  </Card>
+*/
 
 const styles = {
   titleStyle: {
