@@ -7,6 +7,7 @@ import {selectExperiment} from '../actions';
 class ExperimentItem extends Component{
   onSelectPress() {
     const {experiment} = this.props;
+    console.log("IN SEL");
     this.props.selectExperiment(experiment);
   }
   renderDescription(){
@@ -66,9 +67,9 @@ const styles = {
 const mapStateToProps = ({ exp, auth }) => {
   const { experiments, proceedExp } = exp;
   const { id }= auth;
-  console.log(exp.experiments);
-  console.log(exp.proceedExp);
-  console.log(auth.id);
+  //console.log(exp.experiments);
+  //console.log(exp.proceedExp);
+  //console.log(auth.id);
   return {experiments, proceedExp, id};
 }
 
