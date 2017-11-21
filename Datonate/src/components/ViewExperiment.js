@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import { Button } from './common';
-import { assignExperiment } from '../actions';
+import React, {Component} from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import { Button, Card, CardSection } from './common';
+import {assignExperiment} from '../actions';
 
 class ViewExperiment extends Component{
   onSelectPress() {
+    console.log("IN");
     const { currentExperiment, id } = this.props;
     this.props.assignExperiment(id, currentExperiment.id);
   }
@@ -14,20 +15,22 @@ class ViewExperiment extends Component{
     //console.log(this.props);
     const {currentExperiment} = this.props;
     return (
-      <View style={styles.pageView}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Experiment Details</Text>
-        </View>
-        <View style={styles.subtextview}>
-          <Text style={styles.subtextheader}>Experiment ID #{currentExperiment.id}</Text>
-          <Text style={styles.subtextheader}>Experiment ID             Payment</Text>
-          <Text style={styles.subtextsub}>{currentExperiment.id}                   ${currentExperiment.price}</Text>
-        </View>
-        <Text> Short description of the experiment: {currentExperiment.description}</Text>
-        <Button onPress={this.onSelectPress.bind(this)}>
-          Start Task
-        </Button>
-      </View>
+      <Card>
+      <CardSection>
+      <Text> The Experiment ID is {currentExperiment.id}</Text>
+      </CardSection>
+      <CardSection>
+      <Text> You will be paid {currentExperiment.price} for performing this experiment</Text>
+      </CardSection>
+      <CardSection>
+      <Text> Short description of the experiment: {currentExperiment.description}</Text>
+      </CardSection>
+      <CardSection>
+      <Button onPress={this.onSelectPress.bind(this)}>
+        Start Task
+      </Button>
+      </CardSection>
+      </Card>
     );
 
   }

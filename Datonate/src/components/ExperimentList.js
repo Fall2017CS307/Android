@@ -4,6 +4,7 @@ import {ListView, View, Text, DrawerLayoutAndroid} from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
 import {viewExperiments} from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 class ExperimentList extends Component{
 
@@ -16,6 +17,12 @@ class ExperimentList extends Component{
 
   renderRow(experiment) {
     return <ExperimentItem experiment={experiment}/>;
+  }
+  onSelectView() {
+    Actions.experimentList();
+  }
+  onSelectDash() {
+    Actions.userList();
   }
   render(){
     console.log(this.props);
@@ -38,7 +45,8 @@ class ExperimentList extends Component{
       this.dataSource = ds.cloneWithRows(this.props.experiments);
       var navigationView = (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
-          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Experiments</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectDash.bind(this)}>My Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Log out</Text>
         </View>
       );

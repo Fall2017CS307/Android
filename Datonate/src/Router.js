@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage';
 import Registration from './components/Registration';
 import ExperimentList from './components/ExperimentList';
 import ViewExperiment from './components/ViewExperiment';
+import Dashboard from './components/Dashboard';
 
 const RouterComponent = () => {
   return (
@@ -24,7 +25,11 @@ const RouterComponent = () => {
           component={ViewExperiment}
           titleStyle={{alignSelf: 'center'}}
           title="Experiment Details"
-          hideNavBar= {true}
+          />
+          <Scene key="userList"
+          component={Dashboard}
+          titleStyle={{alignSelf: 'center'}}
+          title="My Tasks"
           />
         </Scene>
       </Scene>
