@@ -37,18 +37,20 @@ class ExperimentItem extends Component{
                 </Text>
               </Left>
               <Body>
-                <Text>
-                  <Text>     </Text>
-                  <Icon active name="play" style={{ fontSize: 19, color: '#007FFF' }} />
-                  <Text style={{ fontSize: 18, color: '#007FFF' }}>  Start</Text>
-                </Text>
+                <TouchableOpacity onPress={this.onSelectPress.bind(this)}>
+                  <Text>
+                    <Text>     </Text>
+                    <Icon active name="play" style={{ fontSize: 19, color: '#007FFF' }} />
+                    <Text style={{ fontSize: 18, color: '#007FFF' }}>  Start</Text>
+                  </Text>
+                </TouchableOpacity>
               </Body>
               <Right>
-                <Text>
-                  <Icon active name="time" style={{ fontSize: 19, color: '#FFCC00' }} />
-                  <Text> </Text>
-                  <Text style={{ fontSize: 18, color: 'black' }}>11/28</Text>
-                </Text>
+                  <Text>
+                    <Icon active name="time" style={{ fontSize: 19, color: '#FFCC00' }} />
+                    <Text> </Text>
+                    <Text style={{ fontSize: 18, color: 'black' }}>11/28</Text>
+                  </Text>
               </Right>
             </CardItem>
           </Card>
