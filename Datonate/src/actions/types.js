@@ -11,4 +11,5 @@ export const REG_SUCCESS = 'reg_success';
 export const REG_FAILURE = 'reg_failure';
 export const PASS_EXPERIMENTS = 'pass_experiments';
 export const VIEW_EXPERIMENT = 'view_experiment';
-export const STORE_FILES = 'get_batch';
+export const STORE_FILES = 'store_files';
+export const GET_BATCHES = 'get_batches';
