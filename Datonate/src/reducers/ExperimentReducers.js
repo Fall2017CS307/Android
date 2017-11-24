@@ -10,8 +10,10 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case PASS_EXPERIMENTS:
+    case PASS_EXPERIMENTS:{
+      console.log("IN WHAT");
       return {...state, experiments: action.payload, proceedExp: 'go'};
+    }
     case VIEW_EXPERIMENT:
       return {...state, currentExperiment: action.payload};
 

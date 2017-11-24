@@ -22,6 +22,7 @@ export const assignExperiment = (userID, experimentID) => {
                   var res1 = JSON.parse(resText);
                   console.log(res1);
                   var files = res1.files;
+                  console.log(files);
                   storeFiles(dispatch, files);
                   alert("Files stored in state!")
                 })
