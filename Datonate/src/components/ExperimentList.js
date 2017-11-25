@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ListView, View, Text, DrawerLayoutAndroid} from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import {ListView, View, Text, DrawerLayoutAndroid, Picker} from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Title, Fab } from 'native-base';
 import ExperimentItem from './ExperimentItem';
 import {viewExperiments} from '../actions';
 import { Actions } from 'react-native-router-flux';
+
+import { Dropdown } from 'react-native-material-dropdown';
 
 class ExperimentList extends Component{
 
@@ -25,6 +27,16 @@ class ExperimentList extends Component{
     Actions.userList();
   }
   render(){
+
+
+    let data = [{
+          value: 'Banana',
+        }, {
+          value: 'Mango',
+        }, {
+          value: 'Pear',
+        }];
+
     console.log(this.props);
     const {id} = this.props;
     const {experiments} = this.props;
@@ -50,6 +62,7 @@ class ExperimentList extends Component{
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Log out</Text>
         </View>
       );
+
       return(
     <DrawerLayoutAndroid
      drawerWidth={300}
@@ -66,9 +79,8 @@ class ExperimentList extends Component{
             <Title style={{ fontSize: 20 }}>Experiments</Title>
           </Body>
           <Right>
-            <Button transparent>
-              <Icon name='funnel' /><Text style={{ fontSize: 15, color: 'white' }}>  Filter</Text>
-            </Button>
+            <Dropdown containerStyle={{ width: 80, fontSize: 20, color: 'white' }}
+            baseColor="white" label='Sort By' data={data} />
           </Right>
         </Header>
         <View style={{ alignItems: 'center' }}>
