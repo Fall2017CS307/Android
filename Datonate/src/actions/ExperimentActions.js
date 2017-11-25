@@ -1,6 +1,7 @@
 import {
   PASS_EXPERIMENTS,
-  VIEW_EXPERIMENT
+  VIEW_EXPERIMENT,
+  SORT_EXPERIMENTS
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -23,6 +24,30 @@ export const viewExperiments = (id) => {
   });
   };
 };
+
+export const sortExperiments = (experiments) => {
+  return(dispatch) => {
+    function compare(a,b) {
+      if (a.price < b.price)
+        return 1;
+      if (a.price > b.price)
+        return -1;
+      return 0;
+    }
+
+    experiments.sort(compare);
+    console.log(experiments);
+    changeExpDisplay(dispatch, experiments);
+  };
+};
+
+const changeExpDisplay = (dispatch, experiments) => {
+  console.log(experiments);
+  dispatch ( {
+    type: SORT_EXPERIMENTS,
+    payload: experiments
+  });
+}
 
 const passExperiments = (dispatch, response) => {
   //console.log(response);
