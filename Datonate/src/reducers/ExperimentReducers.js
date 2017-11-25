@@ -1,6 +1,7 @@
 import {
   PASS_EXPERIMENTS,
-  VIEW_EXPERIMENT
+  VIEW_EXPERIMENT,
+  SORT_EXPERIMENTS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,7 +17,10 @@ export default (state = INITIAL_STATE, action) => {
     }
     case VIEW_EXPERIMENT:
       return {...state, currentExperiment: action.payload};
-
+    case SORT_EXPERIMENTS:{
+      console.log(action.payload);
+      return {...state, experiments: action.payload};
+    }
     default:
       return state;
   }
