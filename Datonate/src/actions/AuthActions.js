@@ -163,6 +163,7 @@ export const loginUser = ({email, password}) => {
         password: password
         })
       });
+      console.log(myRequest);
       // fetch(myRequest)
       // .then(function(response) {
       //     console.log(response);
@@ -189,7 +190,7 @@ export const loginUser = ({email, password}) => {
       fetch(myRequest)
       .then(function(response) {
 
-
+        console.log(response);
         // if(response.status == 200) {
         //   var responseString = response._bodyText.toString();
         //   if (responseString.includes('200')) {
@@ -206,6 +207,7 @@ export const loginUser = ({email, password}) => {
           //console.log(response);
         response.text().then(function(responseText){
            var toCheck = JSON.parse(responseText);
+           console.log(toCheck);
            if(toCheck.status == 200){
              Actions.experimentList();
                   //console.log(toCheck);

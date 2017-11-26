@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, taskList: action.payload};
     }
     default:{
-      console.log("DEFAULT");
+      //console.log("DEFAULT");
       return state;
     }
   }

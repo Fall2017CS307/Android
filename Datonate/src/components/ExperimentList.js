@@ -18,7 +18,7 @@ class ExperimentList extends Component{
   }
 
   renderRow(experiment) {
-    console.log(experiment);
+    //console.log(experiment);
     return <ExperimentItem experiment={experiment}/>;
   }
   onSelectSort() {
@@ -49,9 +49,15 @@ class ExperimentList extends Component{
     }
     if(this.props.experiments !== null){
       //console.log("Printing 55");
+      if(this.props.isSortedByPrice === 'no'){
       console.log(this.props.experiments);
       this.dataSource = ds.cloneWithRows(this.props.experiments);
       console.log(this.dataSource);
+      }
+      else if(this.props.isSortedByPrice === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.sortedExperiments);
+        console.log(this.dataSource);
+      }
       var navigationView = (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
@@ -99,11 +105,11 @@ class ExperimentList extends Component{
     }
 }
 const mapStateToProps = ({ exp, auth }) => {
-  const { experiments, proceedExp } = exp;
+  const { experiments, proceedExp, sortedExperiments, isSortedByPrice} = exp;
   const { id }= auth;
   console.log(experiments);
   //console.log(exp.proceedExp);
   //console.log(auth.id);
-  return {experiments, proceedExp, id};
+  return {experiments, proceedExp, id, sortedExperiments, isSortedByPrice};
 }
 export default connect(mapStateToProps, {viewExperiments, sortExperiments})(ExperimentList);

@@ -9,7 +9,7 @@ export const viewExperiments = (id) => {
   return(dispatch) => {
     //console.log(id);
   var qur = "http://datonate.com:5000/api/getExperiments/" + id;
-  //console.log(qur);
+  console.log(qur);
 
   fetch(qur)
   .then(function(response){
@@ -37,11 +37,11 @@ export const sortExperiments = (experiments) => {
 
     experiments.sort(compare);
     console.log(experiments);
-    changeExpDisplay(dispatch, experiments);
+    sortExps(dispatch, experiments);
   };
 };
 
-const changeExpDisplay = (dispatch, experiments) => {
+const sortExps = (dispatch, experiments) => {
   console.log(experiments);
   dispatch ( {
     type: SORT_EXPERIMENTS,
