@@ -9,6 +9,8 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
+import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon } from 'native-base';
+
 
 class TextAnnotation extends Component<{}> {
   constructor(props) {
@@ -20,6 +22,8 @@ class TextAnnotation extends Component<{}> {
       experimentresponse: '',
     }
   }
+
+
 
   _userLogin = (props) => {
     console.log("Here\n");
@@ -49,30 +53,40 @@ class TextAnnotation extends Component<{}> {
 
   render() {
 
+    const cards = [
+  {
+    text: 'Card One',
+    name: 'One',
+  },
+  {
+    text: 'Card Two',
+    name: 'Two',
+  },
+];
+
     return (
       <View style={styles.container}>
-      <Text style={styles.experimentheader}>
-        Experiment - { this.state.experimentname }
-      </Text>
-      <Text style={styles.experimenttext}>
-      { this.state.experimenttext }
-      </Text>
-      <Text style={styles.experimentinstruction}>
-      { this.state.experimentinstruction }
-      </Text>
-      <TextInput style = {styles.input}
-        placeholder = "Response"
-        placeholderTextColor = 'white'
-        onChangeText = {(password) => this.setState({password})}
-        value={this.state.text}
-      />
-        <TouchableOpacity style={styles.inputButton}
-          onPress={this._userLogin}
-        >
-        <Text style={styles.inputButtonText}>
-          Submit
-        </Text>
-        </TouchableOpacity>
+      <DeckSwiper
+            dataSource={cards}
+            renderItem={item =>
+              <Card style={{ elevation: 3 }}>
+                <CardItem>
+                  <Left>
+                    <Body>
+                      <Text>{styles.experimentheader}</Text>
+                      <Text note>{ this.state.experimentname }</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem cardBody>
+                </CardItem>
+                <CardItem>
+                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
+                  <Text>{item.name}</Text>
+                </CardItem>
+              </Card>
+            }
+          />
       </View>
     );
   }
