@@ -31,6 +31,9 @@ class ExperimentList extends Component{
   onSelectDash() {
     Actions.userList();
   }
+  onSelectPast() {
+    Actions.pastUserList();
+  }
   onSelectLogOut() {
     this.props.logOutUser();
     Actions.auth();
@@ -66,6 +69,7 @@ class ExperimentList extends Component{
         <View style={{flex: 1, backgroundColor: '#fff'}}>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectDash.bind(this)}>My Experiments</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectPast.bind(this)}>My Past Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectLogOut.bind(this)}>Log out</Text>
         </View>
       );
