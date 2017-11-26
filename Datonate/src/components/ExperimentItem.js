@@ -29,7 +29,7 @@ class ExperimentItem extends Component{
                 </Body>
               </Left>
             </CardItem>
-            <CardItem>
+            <CardItem style={{ backgroundColor: '#f4f4f4' }}>
               <Left>
                 <Text>
                   <Icon active name="cash" style={{ fontSize: 19, color: '#85bb65' }} />
