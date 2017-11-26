@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ListView, View, Text, DrawerLayoutAndroid, Picker, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Fab } from 'native-base';
 import ExperimentItem from './ExperimentItem';
-import {viewExperiments, sortExperiments} from '../actions';
+import {viewExperiments, sortExperiments, logOutUser} from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -30,6 +30,10 @@ class ExperimentList extends Component{
   }
   onSelectDash() {
     Actions.userList();
+  }
+  onSelectLogOut() {
+    this.props.logOutUser();
+    Actions.auth();
   }
   render(){
 
@@ -62,7 +66,7 @@ class ExperimentList extends Component{
         <View style={{flex: 1, backgroundColor: '#fff'}}>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectDash.bind(this)}>My Experiments</Text>
-          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}}>Log out</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectLogOut.bind(this)}>Log out</Text>
         </View>
       );
 
@@ -112,4 +116,4 @@ const mapStateToProps = ({ exp, auth }) => {
   //console.log(auth.id);
   return {experiments, proceedExp, id, sortedExperiments, isSortedByPrice};
 }
-export default connect(mapStateToProps, {viewExperiments, sortExperiments})(ExperimentList);
+export default connect(mapStateToProps, {viewExperiments, sortExperiments, logOutUser})(ExperimentList);
