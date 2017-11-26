@@ -23,12 +23,12 @@ const RouterComponent = () => {
           />
           <Scene key="viewExperiment"
           component={ViewExperiment}
-          titleStyle={{alignSelf: 'center'}}
+          titleStyle={{marginLeft: 70}}
           title="Experiment Details"
           />
           <Scene key="userList"
           component={Dashboard}
-          titleStyle={{alignSelf: 'center'}}
+          titleStyle={{marginLeft: 100}}
           title="My Tasks"
           />
         </Scene>
