@@ -5,6 +5,7 @@ import Registration from './components/Registration';
 import ExperimentList from './components/ExperimentList';
 import ViewExperiment from './components/ViewExperiment';
 import Dashboard from './components/Dashboard';
+import PastExperimentList from './components/PastExperimentList';
 
 const RouterComponent = () => {
   return (
@@ -30,6 +31,11 @@ const RouterComponent = () => {
           component={Dashboard}
           titleStyle={{marginLeft: 100}}
           title="My Tasks"
+          />
+          <Scene key="pastUserList"
+          component={PastExperimentList}
+          titleStyle={{marginLeft: 100}}
+          title="My Completed Tasks"
           />
         </Scene>
       </Scene>
