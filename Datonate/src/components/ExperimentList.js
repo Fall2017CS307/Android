@@ -71,7 +71,7 @@ class ExperimentList extends Component{
      drawerWidth={300}
      drawerPosition={DrawerLayoutAndroid.positions.Left}
      renderNavigationView={() => navigationView}>
-      <View style={{ backgroundColor: '#263238' }}>
+      <View style={{ backgroundColor: '#263238', paddingBottom: '30%' }}>
       <Header>
           <Left>
             <Button transparent>

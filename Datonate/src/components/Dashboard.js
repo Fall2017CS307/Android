@@ -18,7 +18,7 @@ class Dashboard extends Component {
     );
   }
   }
-  
+
 }
 
 const mapStateToProps = ({ userTasks, auth }) => {
