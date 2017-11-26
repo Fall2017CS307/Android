@@ -16,11 +16,14 @@ class Dashboard extends Component {
     const {id} = this.props;
     if(this.props.taskList == null){
       this.props.getBatches(id);
-    return (
-      <Text>No Tasks</Text>
-    );
-  }
-  else {
+      console.log("in");
+    }
+  if(this.props.taskList != null) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 != r2
+    });
+    console.log("IN");
+    this.dataSource = ds.cloneWithRows(this.props.taskList);
     return (
       <View style={{ backgroundColor: '#263238', paddingBottom: '30%' }}>
       <Header>
@@ -30,11 +33,8 @@ class Dashboard extends Component {
             </Button>
           </Left>
           <Body>
-            <Title style={{ fontSize: 20 }}>Experiments</Title>
+            <Title style={{ fontSize: 20 }}>My Experiments</Title>
           </Body>
-          <Right>
-            <TouchableOpacity onPress={this.onSelectSort.bind(this)}><Text>Sort by price</Text></TouchableOpacity>
-          </Right>
         </Header>
         <View style={{ alignItems: 'center' }}>
         <ListView style={{ width: '95%' }}
@@ -43,6 +43,11 @@ class Dashboard extends Component {
           />
         </View>
       </View>
+    );
+  }
+  else {
+    return (
+      <Text> Dashboard is empty </Text>
     );
   }
   }
