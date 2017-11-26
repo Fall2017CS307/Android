@@ -9,7 +9,8 @@ import {
   FIRST_NAME_CHANGED,
   LAST_NAME_CHANGED,
   REG_SUCCESS,
-  REG_FAILURE
+  REG_FAILURE,
+  LOG_OUT_USER
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -44,6 +45,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...staate, email: action.payload, password:'', regPassword:'', number:'', regEmail: '', regPassword: ''}
     case REG_FAILURE:
       return {...state, password:''}
+    case LOG_OUT_USER:
+      return {...state, password:'', id:' '}
     default:
       return state;
   }

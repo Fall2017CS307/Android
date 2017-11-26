@@ -10,7 +10,8 @@ import {
   REG_PASSWORD_CHANGED,
   REG_EMAIL_CHANGED,
   REG_SUCCESS,
-  REG_FAILURE
+  REG_FAILURE,
+  LOG_OUT_USER
 } from './types';
 export const emailChanged = (text) => {
     return {
@@ -247,4 +248,10 @@ const loginUserFailure = (dispatch) => {
   dispatch({
     type: LOGIN_USER_FAILURE
   });
+}
+
+export const logOutUser = () => {
+  return {
+    type: LOG_OUT_USER,
+  };
 }

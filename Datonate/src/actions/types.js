@@ -14,3 +14,4 @@ export const VIEW_EXPERIMENT = 'view_experiment';
 export const STORE_FILES = 'store_files';
 export const GET_BATCHES = 'get_batches';
 export const SORT_EXPERIMENTS = 'sort_experiments';
+export const LOG_OUT_USER = 'log_out_user';
