@@ -12,7 +12,7 @@ export const assignExperiment = (userID, experimentID) => {
         response.text().then(function(responseText){
           var res = JSON.parse(responseText);
           if(res.status == 200){
-            //console.log(res);
+            console.log(res);
             var batchID = res.batch_id;
             console.log(batchID);
             var qur1 = "http://datonate.com:5000/api/" + batchID + "/getBatch";
@@ -24,6 +24,7 @@ export const assignExperiment = (userID, experimentID) => {
                   var files = res1.files;
                   console.log(files);
                   storeFiles(dispatch, files);
+                  Actions.textAnnotation();
                   alert("Files stored in state!")
                 })
             }).catch(function(error){

@@ -10,6 +10,7 @@ class ViewExperiment extends Component{
     console.log("IN");
     const { currentExperiment, id } = this.props;
     this.props.assignExperiment(id, currentExperiment.id);
+
   }
   render(){
 

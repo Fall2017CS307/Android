@@ -6,6 +6,8 @@ import ExperimentList from './components/ExperimentList';
 import ViewExperiment from './components/ViewExperiment';
 import Dashboard from './components/Dashboard';
 import PastExperimentList from './components/PastExperimentList';
+import TextAnnotation from './components/TextAnnotation';
+import ImageAnnotation from './components/ImageAnnotation';
 
 const RouterComponent = () => {
   return (
@@ -36,6 +38,16 @@ const RouterComponent = () => {
           component={PastExperimentList}
           titleStyle={{marginLeft: 100}}
           title="My Completed Tasks"
+          />
+          <Scene key="textAnnotation"
+          component={TextAnnotation}
+          titleStyle={{marginLeft: 100}}
+          title="Text Annotation"
+          />
+          <Scene key="imageAnnotation"
+          component={ImageAnnotation}
+          titleStyle={{marginLeft: 100}}
+          title="Image Annotation"
           />
         </Scene>
       </Scene>
