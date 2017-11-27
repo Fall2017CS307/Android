@@ -13,44 +13,6 @@ import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, I
 
 
 class TextAnnotation extends Component<{}> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      experimentname: 'Emotions (1)',
-      experimentinstruction: 'Please describe your emotions after reading this',
-      experimenttext: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sollicitudin diam nec lacus elementum, id pharetra massa finibus.Nulla viverra ornare elit ut faucibus. Integer vel fringilla diam.',
-      experimentresponse: '',
-    }
-  }
-
-
-
-  _userLogin = (props) => {
-    console.log("Here\n");
-    console.log(this.state.email + "\n");
-    console.log(this.state.password + "\n");
-    var myRequest = new Request('http://65db2b5d.ngrok.io/api/login', {method: 'POST', body: JSON.stringify({
-      email: this.state.email,
-      password: this.state.password
-    })
-  });
-    fetch(myRequest)
-    .then(function(response) {
-        if(response.status == 200) {
-          var responseString = response._bodyText.toString();
-          if (responseString.includes('200')) alert("Login Successful");
-          else alert("Login Failed");
-        }
-        else throw new Error('API fault detected.');
-    })
-    .then(function(response) {
-        console.debug(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
-  }
-
   render() {
 
     const cards = [
@@ -74,7 +36,7 @@ class TextAnnotation extends Component<{}> {
                   <Left>
                     <Body>
                       <Text>{styles.experimentheader}</Text>
-                      <Text note>{ this.state.experimentname }</Text>
+                      <Text note> Emotions </Text>
                     </Body>
                   </Left>
                 </CardItem>
@@ -91,7 +53,10 @@ class TextAnnotation extends Component<{}> {
     );
   }
 }
-
+const mapStateToProps = ({tasks}) => {
+  const {files} = tasks;
+  return {files};
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
