@@ -3,13 +3,13 @@ import {ListView, View, Text, DrawerLayoutAndroid, Picker, TouchableOpacity} fro
 import { Container, Header, Left, Body, Right, Button, Icon, Title, Fab } from 'native-base';
 import {connect} from 'react-redux';
 import {getBatches} from '../actions';
-import ExperimentItem from './ExperimentItem';
+import ExperimentItem2 from './ExperimentItem2';
 
 class Dashboard extends Component {
 
   renderRow(experiment) {
     //console.log(experiment);
-    return <ExperimentItem experiment={experiment}/>;
+    return <ExperimentItem2 experiment={experiment}/>;
   }
 
   render() {
@@ -25,19 +25,9 @@ class Dashboard extends Component {
     console.log("IN");
     this.dataSource = ds.cloneWithRows(this.props.taskList);
     return (
-      <View style={{ backgroundColor: '#263238', paddingBottom: '30%' }}>
-      <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='list' />
-            </Button>
-          </Left>
-          <Body>
-            <Title style={{ fontSize: 20 }}>My Experiments</Title>
-          </Body>
-        </Header>
+      <View style={{ backgroundColor: '#263238', paddingBottom: '30%', height: '100%' }}>
         <View style={{ alignItems: 'center' }}>
-        <ListView style={{ width: '95%' }}
+        <ListView style={{ width: '95%', marginBottom: '0%' }}
           dataSource={this.dataSource}
           renderRow = {this.renderRow}
           />
