@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {ListView, View, Text, DrawerLayoutAndroid, Picker, TouchableOpacity} from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title, Fab } from 'native-base';
+import {ListView, View, Text, DrawerLayoutAndroid, TouchableOpacity} from 'react-native';
+import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
 import {viewExperiments, sortExperiments, logOutUser} from '../actions';
 import { Actions } from 'react-native-router-flux';
@@ -21,7 +21,7 @@ class ExperimentList extends Component{
     //console.log(experiment);
     return <ExperimentItem experiment={experiment}/>;
   }
-  onSelectSort() {
+  onSelectSort() { // Add a parameter and check for type of sort
     const {experiments} = this.props;
     this.props.sortExperiments(experiments);
   }
@@ -69,10 +69,18 @@ class ExperimentList extends Component{
         <View style={{flex: 1, backgroundColor: '#fff'}}>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectDash.bind(this)}>My Experiments</Text>
-          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectPast.bind(this)}>My Past Experiments</Text>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectPast.bind(this)}>Completed Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectLogOut.bind(this)}>Log out</Text>
         </View>
       );
+
+      let data = [{
+      value: 'Price',
+    }, {
+      value: 'Skill',
+    }, {
+      value: 'Random',
+    }];
 
       return(
     <DrawerLayoutAndroid
@@ -90,7 +98,13 @@ class ExperimentList extends Component{
             <Title style={{ fontSize: 20 }}>Experiments</Title>
           </Body>
           <Right>
-            <TouchableOpacity onPress={this.onSelectSort.bind(this)}><Text>Sort by price</Text></TouchableOpacity>
+          <Dropdown
+          label='Sort by'
+          data={data}
+          containerStyle={{ width: 80 }}
+          textColor="FFFFFF"
+          onChangeText={this.onSelectSort.bind(this)}
+          />
           </Right>
         </Header>
         <View style={{ alignItems: 'center' }}>
@@ -108,6 +122,8 @@ class ExperimentList extends Component{
       //   dataSource={this.dataSource}
       //   renderRow = {this.renderRow}
       //   />
+      //<TouchableOpacity onPress={this.onSelectSort.bind(this)}><Text>Sort by price</Text></TouchableOpacity>
+
       <Text> Login Successful </Text>
       );
     }

@@ -2,18 +2,37 @@ import React, {Component} from 'react';
 import {Text} from 'react-native';
 import {connect} from 'react-redux';
 import {getPastExps} from '../actions';
+import ExperimentItem3 from './ExperimentItem3';
+
 
 class PastExperimentList extends Component {
+
+  renderRow(experiment) {
+    //console.log(experiment);
+    return <ExperimentItem3 experiment={experiment}/>;
+  }
+
   render() {
+    const {id}  = this.props;
     if(this.props.pastExpList == null) {
-      const {id}  = this.props;
       this.props.getPastExps(id);
       console.log(this.props.pastExpList);
     }
     if(this.props.pastExpList != null){
-      console.log(this.props.pastExpList);
+      const ds = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 != r2
+      });
+      console.log("IN");
+      this.dataSource = ds.cloneWithRows(this.props.pastExpList);
       return (
-        <Text> Dashboard is not empty </Text>
+        <View style={{ backgroundColor: '#263238', paddingBottom: '30%', height: '100%' }}>
+          <View style={{ alignItems: 'center' }}>
+          <ListView style={{ width: '95%', marginBottom: '0%' }}
+            dataSource={this.dataSource}
+            renderRow = {this.renderRow}
+            />
+          </View>
+        </View>
       );
     }
     else {
