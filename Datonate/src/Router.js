@@ -31,13 +31,13 @@ const RouterComponent = () => {
           />
           <Scene key="userList"
           component={Dashboard}
-          titleStyle={{marginLeft: 100}}
-          title="My Tasks"
+          titleStyle={{marginLeft: 80}}
+          title="My Experiments"
           />
           <Scene key="pastUserList"
           component={PastExperimentList}
-          titleStyle={{marginLeft: 100}}
-          title="My Completed Tasks"
+          titleStyle={{marginLeft: 45}}
+          title="Completed Experiments"
           />
           <Scene key="textAnnotation"
           component={TextAnnotation}
