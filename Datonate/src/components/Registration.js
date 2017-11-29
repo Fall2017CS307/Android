@@ -9,6 +9,7 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
+import {Dropdown} from 'react-native-material-dropdown';
 import {connect} from 'react-redux';
 import { firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser} from '../actions';
 
@@ -28,11 +29,32 @@ class Registration extends Component {
   onRegPassWordChange(text) {
     this.props.regPassWordChanged(text);
   }
+  onSelectGender(text) {
+    console.log(text);
+  }
   userRegister(){
     const {firstName, lastName, number, regEmail, regPassword} = this.props;
     this.props.registerUser({firstName, lastName, number, regEmail, regPassword});
   }
   render(){
+    let genderData = [{
+    value: 'Male',
+  }, {
+    value: 'Female',
+  }, {
+    value: "",
+  }];
+  let skillData = [{
+    value: 'No preference',
+      }, {
+    value: 'High School Diploma',
+      }, {
+    value: "Bachelors",
+    }, {
+    value: "Masters",
+  }, {
+    value: "Ph.D"
+  }];
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
     <Image
@@ -71,6 +93,20 @@ class Registration extends Component {
         placeholderTextColor = 'white'
         onChangeText = {this.onRegPassWordChange.bind(this)}
         value={this.props.regPassword}
+      />
+      <Dropdown
+        label='Select Gender'
+        data={genderData}
+        containerStyle={{ width: 100 }}
+        textColor="#FFFFFF"
+        onChangeText={this.onSelectGender.bind(this)}
+      />
+      <Dropdown
+        label='Select Skill'
+        data={skillData}
+        containerStyle={{ width: 180 }}
+        textColor="#FFFFFF"
+        onChangeText={this.onSelectGender.bind(this)}
       />
       <TouchableOpacity style={styles.inputButton}
         onPress={this.userRegister.bind(this)}>

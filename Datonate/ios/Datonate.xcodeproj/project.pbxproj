@@ -49,6 +49,8 @@
 		B280E4186045491CB0156759 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2214A177334B4613B00F0B4C /* SimpleLineIcons.ttf */; };
 		C61E95C8519148709741FE6F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93A1D185E06A497692245C92 /* Zocial.ttf */; };
 		902A6717C6BC4C1B9AA73C9B /* libRNGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E27BAE36342C4DBEBC216643 /* libRNGL.a */; };
+		F094C38320D34C928283FAB9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5CFC198BB1B440EBBD695038 /* OFL.txt */; };
+		6D089EAF65FF4B118760BDAC /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF22F2A8B5C0495C8D97CC98 /* libRCTActionSheet.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +292,9 @@
 		93A1D185E06A497692245C92 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5AA9D7B4A4F243E0B1DA576D /* RNGL.xcodeproj */ = {isa = PBXFileReference; name = "RNGL.xcodeproj"; path = "../node_modules/gl-react-native/ios/RNGL.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		E27BAE36342C4DBEBC216643 /* libRNGL.a */ = {isa = PBXFileReference; name = "libRNGL.a"; path = "libRNGL.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5CFC198BB1B440EBBD695038 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../node_modules/native-base/Fonts/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F97FF563CF1F4A1986525D85 /* Exemple.xcodeproj */ = {isa = PBXFileReference; name = "Exemple.xcodeproj"; path = "../node_modules/react-native-deck-swiper/Exemples/ios/Exemple.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		AF22F2A8B5C0495C8D97CC98 /* libRCTActionSheet.a */ = {isa = PBXFileReference; name = "libRCTActionSheet.a"; path = "libRCTActionSheet.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +324,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				902A6717C6BC4C1B9AA73C9B /* libRNGL.a in Frameworks */,
+				6D089EAF65FF4B118760BDAC /* libRCTActionSheet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +494,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				5AA9D7B4A4F243E0B1DA576D /* RNGL.xcodeproj */,
+				F97FF563CF1F4A1986525D85 /* Exemple.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -549,6 +556,7 @@
 				B9EC7422696340B9ACCE5E4C /* rubicon-icon-font.ttf */,
 				2214A177334B4613B00F0B4C /* SimpleLineIcons.ttf */,
 				93A1D185E06A497692245C92 /* Zocial.ttf */,
+				5CFC198BB1B440EBBD695038 /* OFL.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -935,6 +943,7 @@
 				4C51F311F3DC49BCB5CED22F /* rubicon-icon-font.ttf in Resources */,
 				B280E4186045491CB0156759 /* SimpleLineIcons.ttf in Resources */,
 				C61E95C8519148709741FE6F /* Zocial.ttf in Resources */,
+				F094C38320D34C928283FAB9 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,10 +1078,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Debug;
@@ -1094,10 +1105,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Release;
@@ -1120,6 +1133,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Debug;
@@ -1141,6 +1155,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Release;
@@ -1171,10 +1186,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Debug;
@@ -1205,10 +1222,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/gl-react-native/ios",
+					"$(SRCROOT)\..\node_modules\react-native-deck-swiper\Exemples\ios\Exemple",
 				);
 			};
 			name = Release;
@@ -1234,6 +1253,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1258,6 +1278,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};

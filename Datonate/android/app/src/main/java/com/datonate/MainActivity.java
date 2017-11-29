@@ -1,6 +1,9 @@
 package com.datonate;
 
 import com.facebook.react.ReactActivity;
+import com.projectseptember.RNGL.RNGLPackage;
+import com.projectseptember.RNGL.RNGLPackage;
+import com.projectseptember.RNGL.RNGLPackage;
 
 public class MainActivity extends ReactActivity {
 
