@@ -9,11 +9,15 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import {ImageCrop} from 'react-native-image-cropper'
+import { Container, Header, Card, CardItem, DeckSwiper, Thumbnail, Left, Body, Icon } from 'native-base';
+import {ImageCrop} from 'react-native-image-cropper';
 
 class ImageAnnotation extends Component<{}> {
 
-
+capture(){
+  this.refs.cropper.crop()
+  .then(base64 => console.log(base64))
+}
 render() {
   return (
   <View>
@@ -39,12 +43,6 @@ render() {
             </CardItem>
             <CardItem>
               <Icon name="heart" style={{ color: '#ED4A6A' }} />
-              <TextInput style = {styles.input}
-                placeholder = "Type of object"
-                placeholderTextColor = 'white'
-                onChangeText = {this.onEmailChange.bind(this)}
-                value={this.props.email}
-              />
             </CardItem>
           </Card>
         }
@@ -52,10 +50,6 @@ render() {
   </View>
 
   )
-}
-capture(){
-  this.refs.cropper.crop()
-  .then(base64 => console.log(base64))
 }
 
 }
