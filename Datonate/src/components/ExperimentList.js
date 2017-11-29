@@ -101,8 +101,9 @@ class ExperimentList extends Component{
           <Dropdown
           label='Sort by'
           data={data}
-          containerStyle={{ width: 80 }}
-          textColor="FFFFFF"
+          containerStyle={{ width: 80, color: 'white' }}
+          pickerStyle={{ marginTop: 22 }}
+          textColor="black"
           onChangeText={this.onSelectSort.bind(this)}
           />
           </Right>
