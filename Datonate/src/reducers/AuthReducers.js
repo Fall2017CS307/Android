@@ -11,7 +11,10 @@ import {
   REG_SUCCESS,
   REG_FAILURE,
   LOG_OUT_USER,
-  EMAIL_CHANGED_RESET
+  EMAIL_CHANGED_RESET,
+  REG_COUNTRY_CHANGED,
+  REG_GENDER_CHANGED,
+  REG_SKILL_CHANGED
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -50,6 +53,12 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, password:'', id:' '}
     case EMAIL_CHANGED_RESET:
       return {...state, userEmail:action.payload}
+    case REG_COUNTRY_CHANGED:
+      return {...state, regCountry:action.payload}
+    case REG_GENDER_CHANGED:
+      return {...state, regGender:action.payload}
+    case REG_SKILL_CHANGED:
+      return {...state, regSkill:action.payload}
     default:
       return state;
   }
