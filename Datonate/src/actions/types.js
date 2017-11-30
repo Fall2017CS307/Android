@@ -17,3 +17,6 @@ export const SORT_EXPERIMENTS = 'sort_experiments';
 export const LOG_OUT_USER = 'log_out_user';
 export const GET_PAST_BATCHES = 'get_past_batches';
 export const EMAIL_CHANGED_RESET = 'email_changed_reset';
+export const REG_COUNTRY_CHANGED = 'reg_country_changed';
+export const REG_GENDER_CHANGED = 'reg_gender_changed';
+export const REG_SKILL_CHANGED = 'reg_skill_changed';

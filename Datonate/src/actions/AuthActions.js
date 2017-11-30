@@ -12,7 +12,10 @@ import {
   REG_SUCCESS,
   REG_FAILURE,
   LOG_OUT_USER,
-  EMAIL_CHANGED_RESET
+  EMAIL_CHANGED_RESET,
+  REG_COUNTRY_CHANGED,
+  REG_GENDER_CHANGED,
+  REG_SKILL_CHANGED
 } from './types';
 export const emailChanged = (text) => {
     return {
@@ -263,3 +266,24 @@ export const emailChangedReset = (text) => {
     payload: text
   };
 }
+
+export const regCountryChanged = (text) => {
+    return {
+      type: REG_COUNTRY_CHANGED,
+      payload: text
+    };
+};
+
+export const regGenderChanged = (text) => {
+    return {
+      type: REG_GENDER_CHANGED,
+      payload: text
+    };
+};
+
+export const regSkillChanged = (text) => {
+    return {
+      type: REG_SKILL_CHANGED,
+      payload: text
+    };
+};

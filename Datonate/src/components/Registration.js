@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 import {connect} from 'react-redux';
-import { firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser} from '../actions';
+import { firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser, regCountryChanged, regGenderChanged, regSkillChanged} from '../actions';
 
 class Registration extends Component {
   onFirstNameChange(text) {
@@ -30,8 +30,14 @@ class Registration extends Component {
   onRegPassWordChange(text) {
     this.props.regPassWordChanged(text);
   }
+  onRegCountryChange(text) {
+    this.props.regCountryChanged(text);
+  }
   onSelectGender(text) {
-    console.log(text);
+    this.props.regGenderChanged(text);
+  }
+  onSelectSkillData(text) {
+    this.props.regSkillChanged(text);
   }
   userRegister(){
     const {firstName, lastName, number, regEmail, regPassword} = this.props;
@@ -86,10 +92,9 @@ class Registration extends Component {
         maxLength = {10}  //setting limit of input
         />
         <TextInput style = {styles.inputRight}
-          secureTextEntry = {true}
-          placeholder = "Password"
+          placeholder = "Country"
           placeholderTextColor = 'white'
-          onChangeText = {this.onRegPassWordChange.bind(this)}
+          onChangeText = {this.onRegCountryChange.bind(this)}
           value={this.props.regPassword}
         />
       </View>
@@ -99,6 +104,13 @@ class Registration extends Component {
         onChangeText = {this.onRegEmailChange.bind(this)}
         value={this.props.regEmail}
       />
+      <TextInput style = {styles.input}
+          secureTextEntry = {true}
+        placeholder = "Password"
+        placeholderTextColor = 'white'
+        onChangeText = {this.onRegPassWordChange.bind(this)}
+        value={this.props.regPassword}
+      />
       <View style={{ flexDirection: 'row' }}>
       <Dropdown
         label='Select Gender'
@@ -107,6 +119,7 @@ class Registration extends Component {
         baseColor="white"
         textColor="black"
         onChangeText={this.onSelectGender.bind(this)}
+        value={this.props.regGender}
       />
       <Dropdown
         label='Select Skill'
@@ -114,7 +127,8 @@ class Registration extends Component {
         containerStyle={{ width: 180, marginLeft: '5%' }}
         baseColor="white"
         textColor="black"
-        onChangeText={this.onSelectGender.bind(this)}
+        onChangeText={this.onSelectSkillData.bind(this)}
+        value={this.props.regSkill}
       />
       </View>
       <TouchableOpacity style={styles.inputButton}
@@ -178,10 +192,10 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = ({ auth }) => {
-  const { firstName, lastName, number, regEmail, regPassword} = auth;
+  const { firstName, lastName, number, regEmail, regPassword, regCountry} = auth;
 
-  return { firstName, lastName, number, regEmail, regPassword};
+  return { firstName, lastName, number, regEmail, regPassword, regCountry};
 };
 export default connect(mapStateToProps, {
-  firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser
+  firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser, regCountryChanged, regSkillChanged, regGenderChanged
 })(Registration);
