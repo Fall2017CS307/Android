@@ -15,7 +15,7 @@ const RouterComponent = () => {
       <Scene key="root" hideNavBar = {true}>
         <Scene key="auth">
           <Scene key="login" component={LoginPage} titleStyle={{alignSelf: 'center'}}  title="Please Login" />
-          <Scene key="register" component={Registration} titleStyle={{alignSelf: 'center'}} title="Please Register" />
+          <Scene key="register" component={Registration} titleStyle={{marginLeft: 80}} title="Please Register" />
         </Scene>
         <Scene key="main">
           <Scene key="experimentList"
