@@ -9,17 +9,15 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
+import {connect} from 'react-redux';
+import {emailChangedReset} from '../actions'
 // Creating component
 class PasswordReset extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: ''
-    }
+  onEmailChange(text) {
+    this.props.emailChangedReset(text);
   }
+  _userReset() {
 
-  _userReset = () => {
-    alert("A reset code has been sent to " + this.state.email);
   }
 
   render() {
@@ -33,8 +31,8 @@ class PasswordReset extends Component {
         <TextInput style = {styles.input}
           placeholder = "Email"
           placeholderTextColor = 'white'
-          onChangeText = {(email) => this.setState({email})}
-          value={this.state.text}
+          onChangeText = {this.onEmailChange.bind(this)}
+          value={this.props.userEmail}
         />
         <TouchableOpacity style={styles.inputButton}
           onPress={this._userReset}
@@ -82,5 +80,10 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = ({ auth }) => {
+  const {userEmail} = auth;
+  return {userEmail};
+}
+
 // Exporting Component
-export default PasswordReset;
+export default connect(mapStateToProps, {emailChangedReset})(PasswordReset);

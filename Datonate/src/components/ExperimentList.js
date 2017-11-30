@@ -21,9 +21,16 @@ class ExperimentList extends Component{
     //console.log(experiment);
     return <ExperimentItem experiment={experiment}/>;
   }
-  onSelectSort() { // Add a parameter and check for type of sort
+  onSortSelect(text) { // Add a parameter and check for type of sort
     const {experiments} = this.props;
-    this.props.sortExperiments(experiments);
+    const {id} = this.props;
+    if(text == "Price")
+      this.props.sortExperiments(experiments);
+    else if(text == "Time")
+      alert("Time sorting yet to be implemented")
+    else {
+      this.props.viewExperiments(id);
+    }
   }
   onSelectView() {
     Actions.experimentList();
@@ -44,7 +51,7 @@ class ExperimentList extends Component{
     const {id} = this.props;
     const {experiments} = this.props;
     //console.log(id);
-    //this.props.viewExperiments(id);
+     //this.props.viewExperiments(id);
     //console.log(this.props.proceedExp);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 != r2
@@ -77,7 +84,7 @@ class ExperimentList extends Component{
       let data = [{
       value: 'Price',
     }, {
-      value: 'Skill',
+      value: 'Time',
     }, {
       value: 'Random',
     }];
@@ -104,7 +111,7 @@ class ExperimentList extends Component{
           containerStyle={{ width: 80, color: 'white' }}
           pickerStyle={{ marginTop: 22 }}
           textColor="black"
-          onChangeText={this.onSelectSort.bind(this)}
+          onChangeText={this.onSortSelect.bind(this)}
           />
           <Dropdown
           label='Sort by'
@@ -112,7 +119,7 @@ class ExperimentList extends Component{
           containerStyle={{ width: 80, color: 'white' }}
           pickerStyle={{ marginTop: 22 }}
           textColor="black"
-          onChangeText={this.onSelectSort.bind(this)}
+          onChangeText={this.onSortSelect.bind(this)}
           />
           </Right>
         </Header>

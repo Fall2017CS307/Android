@@ -10,7 +10,8 @@ import {
   LAST_NAME_CHANGED,
   REG_SUCCESS,
   REG_FAILURE,
-  LOG_OUT_USER
+  LOG_OUT_USER,
+  EMAIL_CHANGED_RESET
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -47,6 +48,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, password:''}
     case LOG_OUT_USER:
       return {...state, password:'', id:' '}
+    case EMAIL_CHANGED_RESET:
+      return {...state, userEmail:action.payload}
     default:
       return state;
   }
