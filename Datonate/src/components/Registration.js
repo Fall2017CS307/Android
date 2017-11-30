@@ -7,7 +7,8 @@ import {
   TextInput,
   Image,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 import {connect} from 'react-redux';
@@ -42,7 +43,7 @@ class Registration extends Component {
   }, {
     value: 'Female',
   }, {
-    value: "",
+    value: "-",
   }];
   let skillData = [{
     value: 'No preference',
@@ -61,19 +62,22 @@ class Registration extends Component {
     style={styles.logo}
     source={require('../images/logo.png')}
     />
-      <TextInput style = {styles.input}
+    <View style={{ flexDirection: 'row' }}>
+      <TextInput style = {styles.inputLeft}
         placeholder = "First Name"
         placeholderTextColor = 'white'
         onChangeText = {this.onFirstNameChange.bind(this)}
         value={this.props.firstName}
       />
-      <TextInput style = {styles.input}
+      <TextInput style = {styles.inputRight}
         placeholder = "Last Name"
         placeholderTextColor = 'white'
         onChangeText = {this.onLastNameChange.bind(this)}
         value={this.props.lastName}
       />
-      <TextInput style={styles.input}
+    </View>
+    <View style={{ flexDirection: 'row' }}>
+      <TextInput style={styles.inputLeft}
         placeholder = "Phone number"
         keyboardType = 'numeric'
         placeholderTextColor = 'white'
@@ -81,33 +85,38 @@ class Registration extends Component {
         value = {this.props.number}
         maxLength = {10}  //setting limit of input
         />
+        <TextInput style = {styles.inputRight}
+          secureTextEntry = {true}
+          placeholder = "Password"
+          placeholderTextColor = 'white'
+          onChangeText = {this.onRegPassWordChange.bind(this)}
+          value={this.props.regPassword}
+        />
+      </View>
       <TextInput style = {styles.input}
         placeholder = "Email"
         placeholderTextColor = 'white'
         onChangeText = {this.onRegEmailChange.bind(this)}
         value={this.props.regEmail}
       />
-      <TextInput style = {styles.input}
-        secureTextEntry = {true}
-        placeholder = "Password"
-        placeholderTextColor = 'white'
-        onChangeText = {this.onRegPassWordChange.bind(this)}
-        value={this.props.regPassword}
-      />
+      <View style={{ flexDirection: 'row' }}>
       <Dropdown
         label='Select Gender'
         data={genderData}
-        containerStyle={{ width: 100 }}
-        textColor="#FFFFFF"
+        containerStyle={{ width: 120 }}
+        baseColor="white"
+        textColor="black"
         onChangeText={this.onSelectGender.bind(this)}
       />
       <Dropdown
         label='Select Skill'
         data={skillData}
-        containerStyle={{ width: 180 }}
-        textColor="#FFFFFF"
+        containerStyle={{ width: 180, marginLeft: '5%' }}
+        baseColor="white"
+        textColor="black"
         onChangeText={this.onSelectGender.bind(this)}
       />
+      </View>
       <TouchableOpacity style={styles.inputButton}
         onPress={this.userRegister.bind(this)}>
       <Text style={styles.inputButtonText}>
@@ -122,7 +131,23 @@ class Registration extends Component {
 const styles = StyleSheet.create({
   input: {
     paddingLeft: '6%',
-    width: '80%',
+    width: '85%',
+    color: 'white',
+    backgroundColor: '#37474F',
+    fontSize: 15
+  },
+  inputLeft: {
+    paddingLeft: '6%',
+    width: '40%',
+    color: 'white',
+    backgroundColor: '#37474F',
+    marginBottom: 10,
+    fontSize: 15
+  },
+  inputRight: {
+    marginLeft: '3%',
+    paddingLeft: '6%',
+    width: '40%',
     color: 'white',
     backgroundColor: '#37474F',
     marginBottom: 10,
@@ -130,8 +155,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     resizeMode: 'contain',
-    height: '25%',
-    marginBottom:'10%'
+    height: '15%',
+    marginBottom:'10%',
   },
   inputButton: {
     marginTop: 10,
