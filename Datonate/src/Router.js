@@ -46,7 +46,7 @@ const RouterComponent = () => {
           />
           <Scene key="imageAnnotation"
           component={ImageAnnotation}
-          titleStyle={{marginLeft: 100}}
+          titleStyle={{marginLeft: 75}}
           title="Image Annotation"
           />
         </Scene>

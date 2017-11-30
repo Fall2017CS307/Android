@@ -25,9 +25,9 @@ class PastExperimentList extends Component {
       console.log("IN");
       this.dataSource = ds.cloneWithRows(this.props.pastExpList);
       return (
-        <View style={{ backgroundColor: '#263238', paddingBottom: '30%', height: '100%' }}>
+        <View style={{ backgroundColor: '#263238', height: '100%' }}>
           <View style={{ alignItems: 'center' }}>
-          <ListView style={{ width: '95%', marginBottom: '0%' }}
+          <ListView style={{ width: '95%' }}
             dataSource={this.dataSource}
             renderRow = {this.renderRow}
             />
