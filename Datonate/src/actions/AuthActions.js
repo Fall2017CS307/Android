@@ -11,7 +11,8 @@ import {
   REG_EMAIL_CHANGED,
   REG_SUCCESS,
   REG_FAILURE,
-  LOG_OUT_USER
+  LOG_OUT_USER,
+  EMAIL_CHANGED_RESET
 } from './types';
 export const emailChanged = (text) => {
     return {
@@ -253,5 +254,12 @@ const loginUserFailure = (dispatch) => {
 export const logOutUser = () => {
   return {
     type: LOG_OUT_USER,
+  };
+}
+
+export const emailChangedReset = (text) => {
+  return {
+    type: EMAIL_CHANGED_RESET,
+    payload: text
   };
 }
