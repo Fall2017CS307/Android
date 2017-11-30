@@ -99,7 +99,7 @@ class ExperimentList extends Component{
           </Body>
           <Right>
           <Dropdown
-          label='Filter by'
+          label='Skill filter'
           data={data}
           containerStyle={{ width: 80, color: 'white' }}
           pickerStyle={{ marginTop: 22 }}
