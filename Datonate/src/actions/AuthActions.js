@@ -218,10 +218,10 @@ export const loginUser = ({email, password}) => {
                   //console.log(toCheck);
                   var id = toCheck.id;
                  loginUserSuccess(dispatch, id);
-                  alert("LogIn Successful");
+                  alert("Login Successful");
            }
            else {
-             alert("LogIn Failed");
+             alert("Username or password is incorrect.");
              loginUserFailure(dispatch);
            }
 

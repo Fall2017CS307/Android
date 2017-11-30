@@ -81,21 +81,59 @@ render() {
 }
 */
 render() {
+
+  const cards = [
+  {
+    image: 'http://i.imgur.com/tCatS2c.jpg',
+  },
+  {
+    image: 'http://i.imgur.com/tCatS2c.jpg',
+  },
+  ];
+
   return (
-  <View>
-    <ImageCrop
-      ref={'cropper'}
-      image={this.state.image}
-      cropHeight={this.state.height}
-      cropWidth={this.state.width}
-      zoom={this.state.zoom}
-      maxZoom={80}
-      minZoom={20}
-      panToMove={true}
-      pinchToZoom={true}
-    />
-    <Text onPress={this.capture.bind(this)}>Capture()</Text>
-  </View>
+  <DeckSwiper
+        dataSource={cards}
+        looping="false"
+        renderItem={item =>
+    <Card style={{ elevation: 3, backgroundColor: '#263238', alignItems: 'center', flex: 1, paddingBottom: '10%' }}>
+      <Text style={{ paddingTop: '5%' }}></Text>
+      <ImageCrop
+      style={{ width: '100%', height: '60%' }}
+        ref={'cropper'}
+        image={this.state.image}
+        cropHeight={this.state.height}
+        cropWidth={this.state.width}
+        zoom={this.state.zoom}
+        maxZoom={80}
+        minZoom={20}
+        panToMove={true}
+        pinchToZoom={true}
+      />
+      <TextInput style = {{
+        paddingLeft: '4%',
+        marginTop: '10%',
+        width: '80%',
+        color: 'white',
+        backgroundColor: '#37474F',
+        marginBottom: 10,
+        fontSize: 15 }}
+        placeholder = "Description"
+        placeholderTextColor = 'white'
+        value={this.state.anotext}
+      />
+      <TouchableOpacity style={{
+        marginTop: '15%',
+        padding:10,
+        backgroundColor: '#0091EA',
+        width: '80%',}}
+        onPress={this.capture.bind(this)}>
+        <Text style={{ color: 'white', textAlign: 'center' }} onPress={this.capture.bind(this)}>Submit</Text>
+      </TouchableOpacity>
+    </Card>
+  }
+  />
+
 
   )
 }

@@ -106,9 +106,10 @@ class ExperimentList extends Component{
           </Body>
           <Right>
           <Dropdown
-          label='Skill filter'
+          label='Filter by'
           data={data}
-          containerStyle={{ width: 80, color: 'white' }}
+          containerStyle={{ width: 80 }}
+          baseColor="white"
           pickerStyle={{ marginTop: 22 }}
           textColor="black"
           onChangeText={this.onSortSelect.bind(this)}
@@ -116,7 +117,8 @@ class ExperimentList extends Component{
           <Dropdown
           label='Sort by'
           data={data}
-          containerStyle={{ width: 80, color: 'white' }}
+          containerStyle={{ width: 80 }}
+          baseColor="white"
           pickerStyle={{ marginTop: 22 }}
           textColor="black"
           onChangeText={this.onSortSelect.bind(this)}

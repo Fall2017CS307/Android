@@ -25,7 +25,7 @@ class Dashboard extends Component {
     console.log("IN");
     this.dataSource = ds.cloneWithRows(this.props.taskList);
     return (
-      <View style={{ backgroundColor: '#263238', paddingBottom: '30%', height: '100%' }}>
+      <View style={{ backgroundColor: '#263238', height: '100%' }}>
         <View style={{ alignItems: 'center' }}>
         <ListView style={{ width: '95%', marginBottom: '0%' }}
           dataSource={this.dataSource}

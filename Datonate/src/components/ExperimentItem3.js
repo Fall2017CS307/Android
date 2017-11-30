@@ -46,7 +46,7 @@ class ExperimentItem extends Component{
               <Right>
                 <Text>
                   <Icon active name="star" style={{ fontSize: 19, color: '#a90000' }} />
-                  <Text style={{ fontSize: 18, color: 'black' }}>  ${ experiment.rating }/5</Text>
+                  <Text style={{ fontSize: 18, color: 'black' }}> { experiment.rating }/5</Text>
                 </Text>
               </Right>
             </CardItem>
