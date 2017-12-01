@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ListView, View, Text, DrawerLayoutAndroid, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
-import {viewExperiments, sortExperiments, logOutUser} from '../actions';
+import {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments} from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -25,9 +25,18 @@ class ExperimentList extends Component{
     const {experiments} = this.props;
     const {id} = this.props;
     if(text == "Price")
-      this.props.sortExperiments(experiments);
+      this.props.sortExperimentsByPrice(experiments);
     else if(text == "Time")
       alert("Time sorting yet to be implemented")
+    else {
+      this.props.viewExperiments(id);
+    }
+  }
+  onFilterSelect(text) { // Add a parameter and check for type of sort
+    const {experiments} = this.props;
+    const {id} = this.props;
+    if(text == "High school" || text == "Bachelors" || text=="Masters" || text=="PHD")
+      this.props.filterExperiments(id, text);
     else {
       this.props.viewExperiments(id);
     }
@@ -59,18 +68,28 @@ class ExperimentList extends Component{
     //console.log("Print kar le bro");
     if (this.props.experiments == null) {
         this.props.viewExperiments(id);
-        console.log("IN");
     }
     if(this.props.experiments !== null){
       //console.log("Printing 55");
-      if(this.props.isSortedByPrice === 'no'){
-      console.log(this.props.experiments);
-      this.dataSource = ds.cloneWithRows(this.props.experiments);
-      console.log(this.dataSource);
+      if(this.props.isSortedByPrice === 'yes')
+        this.dataSource = ds.cloneWithRows(this.props.sortedExperimentsByPrice);
+      else if(this.props.isSortedByTime === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.sortedExperimentsByTime);
       }
-      else if(this.props.isSortedByPrice === 'yes') {
-        this.dataSource = ds.cloneWithRows(this.props.sortedExperiments);
-        console.log(this.dataSource);
+      else if(this.props.isFilteredLevel1 === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.filterExperimentsLevel1);
+      }
+      else if(this.props.isFilteredLevel2 === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.filterExperimentsLevel2);
+      }
+      else if(this.props.isFilteredLevel3 === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.filterExperimentsLevel3);
+      }
+      else if(this.props.isFilteredLevel4 === 'yes') {
+        this.dataSource = ds.cloneWithRows(this.props.filterExperimentsLevel4);
+      }
+      else {
+        this.dataSource = ds.cloneWithRows(this.props.experiments);
       }
       var navigationView = (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -81,12 +100,23 @@ class ExperimentList extends Component{
         </View>
       );
 
-      let data = [{
+      let sortData = [{
       value: 'Price',
     }, {
       value: 'Time',
     }, {
-      value: 'Random',
+      value: 'None',
+    }];
+    let filterData = [{
+      value: 'No preference',
+    }, {
+      value: 'High school',
+    }, {
+      value: 'Bachelors',
+    }, {
+      value: 'Masters',
+    }, {
+      value: 'PHD',
     }];
 
       return(
@@ -107,16 +137,16 @@ class ExperimentList extends Component{
           <Right>
           <Dropdown
           label='Filter by'
-          data={data}
+          data={filterData}
           containerStyle={{ width: 80 }}
           baseColor="white"
           pickerStyle={{ marginTop: 22 }}
           textColor="black"
-          onChangeText={this.onSortSelect.bind(this)}
+          onChangeText={this.onFilterSelect.bind(this)}
           />
           <Dropdown
           label='Sort by'
-          data={data}
+          data={sortData}
           containerStyle={{ width: 80 }}
           baseColor="white"
           pickerStyle={{ marginTop: 22 }}
@@ -147,11 +177,11 @@ class ExperimentList extends Component{
     }
 }
 const mapStateToProps = ({ exp, auth }) => {
-  const { experiments, proceedExp, sortedExperiments, isSortedByPrice} = exp;
+  const { experiments, proceedExp, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4, filterExperimentsLevel1, filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4} = exp;
   const { id }= auth;
   console.log(experiments);
   //console.log(exp.proceedExp);
   //console.log(auth.id);
-  return {experiments, proceedExp, id, sortedExperiments, isSortedByPrice};
+  return {experiments, proceedExp, id, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4,  filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, filterExperimentsLevel1};
 }
-export default connect(mapStateToProps, {viewExperiments, sortExperiments, logOutUser})(ExperimentList);
+export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, logOutUser, filterExperiments})(ExperimentList);

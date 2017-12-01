@@ -22,7 +22,7 @@ class ImageAnnotation extends Component<{}> {
     width: 300,
     zoom: 50,
     showNew: true,
-    newImage: 'http://i.imgur.com/tCatS2c.jpg',
+    newImage: 'https://i.imgur.com/7hOQqwC.jpg',
   };
 }
 
@@ -87,7 +87,7 @@ render() {
     image: 'http://i.imgur.com/tCatS2c.jpg',
   },
   {
-    image: 'http://i.imgur.com/tCatS2c.jpg',
+    image: 'https://i.imgur.com/7hOQqwC.jpg',
   },
   ];
 

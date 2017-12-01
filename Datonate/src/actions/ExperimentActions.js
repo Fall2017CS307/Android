@@ -1,7 +1,12 @@
 import {
   PASS_EXPERIMENTS,
   VIEW_EXPERIMENT,
-  SORT_EXPERIMENTS
+  SORT_EXPERIMENTS_PAY,
+  SORT_EXPERIMENTS_TIME,
+  FILTER_EXPERIMENTS_LEVEL1,
+  FILTER_EXPERIMENTS_LEVEL2,
+  FILTER_EXPERIMENTS_LEVEL3,
+  FILTER_EXPERIMENTS_LEVEL4
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -14,7 +19,7 @@ export const viewExperiments = (id) => {
   fetch(qur)
   .then(function(response){
     response.text().then(function(responseText){
-      //console.log(responseText);
+      console.log(responseText);
       //console.log("Error ke Pehle");
       passExperiments(dispatch, JSON.parse(responseText).experiments);
       //console.log("Error ke baad");
@@ -25,7 +30,7 @@ export const viewExperiments = (id) => {
   };
 };
 
-export const sortExperiments = (experiments) => {
+export const sortExperimentsByPrice = (experiments) => {
   return(dispatch) => {
     function compare(a,b) {
       if (a.price < b.price)
@@ -37,17 +42,45 @@ export const sortExperiments = (experiments) => {
 
     experiments.sort(compare);
     console.log(experiments);
-    sortExps(dispatch, experiments);
+    sortExpsByPrice(dispatch, experiments);
   };
 };
 
-const sortExps = (dispatch, experiments) => {
+const sortExpsByPrice = (dispatch, experiments) => {
   console.log(experiments);
   dispatch ( {
-    type: SORT_EXPERIMENTS,
+    type: SORT_EXPERIMENTS_PAY,
     payload: experiments
   });
 }
+
+export const filterExperiments = (id, text) => {
+  return (dispatch) => {
+    var bodyToSend = {};
+    if(text == "High school")
+      bodyToSend.education = 1;
+    else if(text == "Bachelors")
+      bodyToSend.education = 2;
+    else if(text == "Masters")
+      bodyToSend.education = 3;
+    else if(text == "PHD")
+      bodyToSend.education = 4;
+    var request = new Request('http://datonate.com:5000/api/getExperiments/' + id, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyToSend)
+    });
+    fetch(request)
+    .then(function(response){
+      console.log(response);
+    }).catch(function(error){
+      console.log(error);
+    });
+  };
+};
 
 const passExperiments = (dispatch, response) => {
   //console.log(response);
