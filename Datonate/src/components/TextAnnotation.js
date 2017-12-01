@@ -27,29 +27,39 @@ class TextAnnotation extends Component<{}> {
 ];
 
     return (
-      <View style={styles.container}>
       <DeckSwiper
             dataSource={cards}
+            looper="false"
             renderItem={item =>
-              <Card style={{ elevation: 3 }}>
-                <CardItem>
-                  <Left>
-                    <Body>
-                      <Text>{styles.experimentheader}</Text>
-                      <Text note> Emotions </Text>
-                    </Body>
-                  </Left>
-                </CardItem>
-                <CardItem cardBody>
-                </CardItem>
-                <CardItem>
-                  <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                  <Text>{item.name}</Text>
-                </CardItem>
+              <Card style={{ elevation: 3, backgroundColor: '#263238', alignItems: 'center', flex: 1, paddingBottom: '10%' }}>
+                <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '20%' }}>Lorem ipsum dolor sit amet,
+                eu hinc posidonium theophrastus vix,
+                tantas oporteat eu vix. Ius no unum vero
+                liberavisse, ad aeterno virtute quo. Ut agam soleat
+                ancillae vel, mel graeco oblique luptatum ad. Soluta
+                noster his ne, magna dolor tacimates et per. Tempor
+                antiopam et eum.</Text>
+                <TextInput style={{
+                  paddingLeft: '4%',
+                  marginTop: '10%',
+                  width: '80%',
+                  color: 'white',
+                  backgroundColor: '#37474F',
+                  marginBottom: 10,
+                  fontSize: 15 }}
+                  placeholder = "Description"
+                  placeholderTextColor = 'white'
+                />
+                <TouchableOpacity style={{
+                  marginTop: '20%',
+                  padding: 10,
+                  backgroundColor: '#0091EA',
+                  width: '80%'}}>
+                  <Text style={{ color: 'white', textAlign: 'center' }}>Submit</Text>
+                </TouchableOpacity>
               </Card>
             }
           />
-      </View>
     );
   }
 }
