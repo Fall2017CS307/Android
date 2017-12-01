@@ -27,7 +27,7 @@ class ExperimentList extends Component{
     if(text == "Price")
       this.props.sortExperimentsByPrice(experiments);
     else if(text == "Time")
-      alert("Time sorting yet to be implemented")
+      this.props.sortExperimentsByTime(id, experiments);
     else {
       this.props.viewExperiments(id);
     }
@@ -74,6 +74,7 @@ class ExperimentList extends Component{
       if(this.props.isSortedByPrice === 'yes')
         this.dataSource = ds.cloneWithRows(this.props.sortedExperimentsByPrice);
       else if(this.props.isSortedByTime === 'yes') {
+        console.log(this.props.isSortedByTime);
         this.dataSource = ds.cloneWithRows(this.props.sortedExperimentsByTime);
       }
       else if(this.props.isFilteredLevel1 === 'yes') {
@@ -184,4 +185,4 @@ const mapStateToProps = ({ exp, auth }) => {
   //console.log(auth.id);
   return {experiments, proceedExp, id, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4,  filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, filterExperimentsLevel1};
 }
-export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, logOutUser, filterExperiments})(ExperimentList);
+export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments})(ExperimentList);

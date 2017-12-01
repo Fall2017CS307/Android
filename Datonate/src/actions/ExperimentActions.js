@@ -54,6 +54,38 @@ const sortExpsByPrice = (dispatch, experiments) => {
   });
 }
 
+export const sortExperimentsByTime = (id, experiments) => {
+  return (dispatch) => {
+    var request = new Request('http://datonate.com:5000/api/getExperiments/' + id, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sort: 'time'
+      })
+    });
+    fetch(request)
+    .then(function(response){
+      response.text().then(function(responseText){
+        var exps = JSON.parse(responseText).experiments;
+        sortExpsByTime(dispatch, exps);
+      })
+    })
+    .catch(function(error){
+      console.log(error);
+    });
+  };
+};
+
+const sortExpsByTime = (dispatch, exps) => {
+  dispatch({
+    type: SORT_EXPERIMENTS_TIME,
+    payload: exps
+  });
+};
+
 export const filterExperiments = (id, text) => {
   return (dispatch) => {
     var bodyToSend = {};
