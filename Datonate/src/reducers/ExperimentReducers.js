@@ -6,7 +6,8 @@ import {
   FILTER_EXPERIMENTS_LEVEL1,
   FILTER_EXPERIMENTS_LEVEL2,
   FILTER_EXPERIMENTS_LEVEL3,
-  FILTER_EXPERIMENTS_LEVEL4
+  FILTER_EXPERIMENTS_LEVEL4,
+  STORE_BALANCE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -86,6 +87,9 @@ export default (state = INITIAL_STATE, action) => {
               isFilteredLevel3: 'no',
               isFilteredLevel4: 'yes',
               }
+    }
+    case STORE_BALANCE: {
+      return {...state, balance: action.payload}
     }
     default:
       return state;
