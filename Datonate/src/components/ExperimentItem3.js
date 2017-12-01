@@ -22,10 +22,6 @@ class ExperimentItem extends Component{
               <Left>
                 <Body>
                   <Text style={{ fontSize: 22, color: 'black' }}>{experiment.description}{"\n"}</Text>
-                  <Text>
-                    <Icon name="person" />
-                    <Text note style={{ fontSize: 18, color: 'black' }}>  By [Experimenter]</Text>
-                  </Text>
                 </Body>
               </Left>
             </CardItem>
