@@ -24,7 +24,7 @@ export const assignExperiment = (userID, experimentID) => {
                   var files = res1.files;
                   console.log(files);
                   storeFiles(dispatch, files);
-                  Actions.imageAnnotation();
+                  Actions.textAnnotation();
                   alert("Files stored in state!")
                 })
             }).catch(function(error){
