@@ -45,6 +45,7 @@ var styles = StyleSheet.create({
 
 var swiper = React.createClass({
   render: function() {
+    console.disableYellowBox = true;
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk))
     return (
       <Provider store={store}>
