@@ -27,11 +27,7 @@ class TextAnnotation extends Component<{}> {
 ];
 
     return (
-      <DeckSwiper
-            dataSource={cards}
-            looper="false"
-            renderItem={item =>
-              <Card style={{ elevation: 3, backgroundColor: '#263238', alignItems: 'center', flex: 1, paddingBottom: '10%' }}>
+      <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
                 <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '20%' }}>Lorem ipsum dolor sit amet,
                 eu hinc posidonium theophrastus vix,
                 tantas oporteat eu vix. Ius no unum vero
@@ -57,9 +53,7 @@ class TextAnnotation extends Component<{}> {
                   width: '80%'}}>
                   <Text style={{ color: 'white', textAlign: 'center' }}>Submit</Text>
                 </TouchableOpacity>
-              </Card>
-            }
-          />
+                </View>
     );
   }
 }

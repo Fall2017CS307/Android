@@ -41,7 +41,7 @@ const RouterComponent = () => {
           />
           <Scene key="textAnnotation"
           component={TextAnnotation}
-          titleStyle={{marginLeft: 100}}
+          titleStyle={{marginLeft: 80}}
           title="Text Annotation"
           />
           <Scene key="imageAnnotation"
