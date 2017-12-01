@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ListView, View, Text, DrawerLayoutAndroid, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
-import {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments} from '../actions';
+import {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance} from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -68,6 +68,7 @@ class ExperimentList extends Component{
     //console.log("Print kar le bro");
     if (this.props.experiments == null) {
         this.props.viewExperiments(id);
+        this.props.getBalance(id);
     }
     if(this.props.experiments !== null){
       //console.log("Printing 55");
@@ -94,6 +95,7 @@ class ExperimentList extends Component{
       }
       var navigationView = (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
+          <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} >My earnings: ${this.props.balance}</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectView.bind(this)}>Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectDash.bind(this)}>My Experiments</Text>
           <Text style={{margin: 10, fontSize: 20, textAlign: 'left'}} onPress={this.onSelectPast.bind(this)}>Completed Experiments</Text>
@@ -178,11 +180,11 @@ class ExperimentList extends Component{
     }
 }
 const mapStateToProps = ({ exp, auth }) => {
-  const { experiments, proceedExp, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4, filterExperimentsLevel1, filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4} = exp;
+  const { experiments, proceedExp, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4, filterExperimentsLevel1, filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, balance} = exp;
   const { id }= auth;
   console.log(experiments);
   //console.log(exp.proceedExp);
   //console.log(auth.id);
-  return {experiments, proceedExp, id, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4,  filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, filterExperimentsLevel1};
+  return {experiments, proceedExp, id, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4,  filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, filterExperimentsLevel1, balance};
 }
-export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments})(ExperimentList);
+export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance})(ExperimentList);

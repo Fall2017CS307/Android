@@ -1,6 +1,7 @@
 import {
   STORE_FILES,
-  DESC_CHANGED
+  DESC_CHANGED,
+  UPDATE_FILES
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -26,7 +27,7 @@ export const assignExperiment = (userID, experimentID) => {
                   var files = res1.files;
                   console.log(files);
                   storeFiles(dispatch, files);
-                  Actions.textAnnotation();
+                  Actions.imageAnnotation();
                   alert("Files stored in state!")
                 })
             }).catch(function(error){
@@ -53,4 +54,19 @@ export const descChanged = (text) => {
     type: DESC_CHANGED,
     payload: text
   };
+};
+
+export const changeFiles = (files) => {
+  return (dispatch) => {
+    files.splice(0, 1);
+    updateFiles(dispatch, files);
+  };
+};
+
+const updateFiles = (dispatch, files) => {
+  console.log(files);
+  dispatch ({
+    type: UPDATE_FILES,
+    payload: files
+  });
 };

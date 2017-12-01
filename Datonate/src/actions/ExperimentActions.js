@@ -6,7 +6,8 @@ import {
   FILTER_EXPERIMENTS_LEVEL1,
   FILTER_EXPERIMENTS_LEVEL2,
   FILTER_EXPERIMENTS_LEVEL3,
-  FILTER_EXPERIMENTS_LEVEL4
+  FILTER_EXPERIMENTS_LEVEL4,
+  STORE_BALANCE
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -29,6 +30,29 @@ export const viewExperiments = (id) => {
   });
   };
 };
+
+export const getBalance = (id) => {
+    return (dispatch) => {
+      var qur = "http://datonate.com:5000/api/userBalance/" + id;
+      fetch(qur).
+        then(function(response){
+          response.text().then(function(responseText){
+            var balance = JSON.parse(responseText).balance;
+            storeBalance(dispatch, balance);
+          })
+        })
+        .catch(function(response){
+
+        });
+    }
+};
+
+const storeBalance = (dispatch, balance) => {
+  dispatch ({
+    type: STORE_BALANCE,
+    payload: balance
+  })
+}
 
 export const sortExperimentsByPrice = (experiments) => {
   return(dispatch) => {
