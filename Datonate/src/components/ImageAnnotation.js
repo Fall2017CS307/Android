@@ -12,88 +12,20 @@ import {
 import { Container, Header, Card, CardItem, DeckSwiper, Thumbnail, Left, Body, Icon } from 'native-base';
 import {ImageCrop} from 'react-native-image-cropper';
 import {connect} from 'react-redux';
+import {descChanged} from '../actions';
 
-class ImageAnnotation extends Component<{}> {
-  constructor(props) {
-  super(props);
-  this.state = {
-    image: 'http://i.imgur.com/tCatS2c.jpg',
-    height: 200,
-    width: 300,
-    zoom: 50,
-    showNew: true,
-    newImage: 'https://i.imgur.com/7hOQqwC.jpg',
-  };
+class ImageAnnotation extends Component {
+
+onChangeDescription(text) {
+  this.props.descChanged(text);
 }
-
-/*
-capture(){
-    this.refs.cropper.crop()
-    .then(res =>{
-      this.setState({
-        showNew: true,
-        newImage: res,
-      });
-    })
-  }
-render() {
-  const cards = [
-{
-  text: 'Card One',
-  name: 'One',
-},
-{
-  text: 'Card Two',
-  name: 'Two',
-},
-];
-  return (
-  <View>
-  <DeckSwiper
-        dataSource={cards}
-        renderItem={item =>
-          <Card style={{ elevation: 3 }}>
-            <CardItem>
-            <ImageCrop
-              ref={'cropper'}
-              image={this.state.image}
-              cropHeight={this.state.height}
-              cropWidth={this.state.width}
-              zoom={this.state.zoom}
-              maxZoom={80}
-              minZoom={20}
-              panToMove={true}
-              pinchToZoom={true}
-            />
-            </CardItem>
-            <Text onPress={this.capture()}>Save</Text>
-            <CardItem cardBody>
-            </CardItem>
-            <CardItem>
-              <Icon name="heart" style={{ color: '#ED4A6A' }} />
-            </CardItem>
-          </Card>
-        }
-        />
-  </View>
-
-  )
-}
-*/
 render() {
 
-  const cards = [
-  {
-    image: 'http://i.imgur.com/tCatS2c.jpg',
-  },
-  {
-    image: 'https://i.imgur.com/7hOQqwC.jpg',
-  },
-  ];
+  const {files} = this.props;
 
   return (
   <DeckSwiper
-        dataSource={cards}
+        dataSource={files}
         looping="false"
         renderItem={item =>
     <Card style={{ elevation: 3, backgroundColor: '#263238', alignItems: 'center', flex: 1, paddingBottom: '10%' }}>
@@ -101,10 +33,10 @@ render() {
       <ImageCrop
       style={{ width: '100%', height: '60%' }}
         ref={'cropper'}
-        image={this.state.image}
-        cropHeight={this.state.height}
-        cropWidth={this.state.width}
-        zoom={this.state.zoom}
+        image={item.link}
+        cropHeight={200}
+        cropWidth={300}
+        zoom={50}
         maxZoom={80}
         minZoom={20}
         panToMove={true}
@@ -120,7 +52,8 @@ render() {
         fontSize: 15 }}
         placeholder = "Description"
         placeholderTextColor = 'white'
-        value={this.state.anotext}
+        onChangeText = {this.onChangeDescription.bind(this)}
+        value={this.props.desc}
       />
       <TouchableOpacity style={{
         marginTop: '15%',
@@ -143,9 +76,8 @@ capture(){
 }
 
 }
-
 const mapStateToProps = ({tasks}) => {
-  const {files} = tasks;
-  return {files};
+  const {files, desc} = tasks;
+  return {files, desc};
 }
-export default connect(mapStateToProps)(ImageAnnotation);
+export default connect(mapStateToProps, {descChanged})(ImageAnnotation);
