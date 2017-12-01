@@ -17,6 +17,10 @@ import {
   REG_GENDER_CHANGED,
   REG_SKILL_CHANGED
 } from './types';
+
+var country = '';
+var gender;
+var skill;
 export const emailChanged = (text) => {
     return {
       type: EMAIL_CHANGED,
@@ -79,21 +83,34 @@ export const regPassWordChanged = (text) => {
   };
 };
 
-export const registerUser = ({firstName, lastName, number, regEmail, regPassword}) => {
+export const registerUser = ({firstName, lastName, number, regEmail, regPassword, regCountry, regGender, regSkill}) => {
   return(dispatch) => {
+    var bodyToSend = {
+      firstname: firstName,
+      lastname: lastName,
+      email: regEmail,
+      password: regPassword,
+      phone: number,
+    }
+    getGender(regGender);
+    if(gender != 2)
+      bodyToSend.gender = gender;
+    getSkill(regSkill);
+    if(skill != -1)
+      bodyToSend.skill = skill;
+    console.log(regGender);
+    console.log(regSkill);
+    console.log(gender);
+    console.log(skill);
+    console.log(bodyToSend);
+
     var request = new Request('http://datonate.com:5000/api/register', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        firstname: firstName,
-        lastname: lastName,
-        email: regEmail,
-        password: regPassword,
-        phone: number,
-      })
+      body: JSON.stringify(bodyToSend)
     });
     fetch(request)
     .then(function(response) {
@@ -140,6 +157,53 @@ export const registerUser = ({firstName, lastName, number, regEmail, regPassword
     });
   };
 };
+function getGender(regGender) {
+  // switch(regGender) {
+  //   case "Male":
+  //     gender = 0;
+  //   case "Female":
+  //     gender = 1;
+  //   default:
+  //     gender = 2;
+  // }
+  if(regGender == "Male")
+    gender = 0;
+  else if(regGender == "Female")
+    gender = 1;
+  else
+    gender = 2;
+}
+
+function getSkill(regSkill) {
+  console.log(regSkill);
+
+  if(regSkill ==  "No preference")
+    skill = 0;
+  else if(regSkill == "High school")
+    skill = 1;
+  else if(regSkill == "Bachelors")
+    skill = 2;
+  else if(regSkill == "Masters")
+    skill = 3;
+  else if(regSkill == "PHD")
+    skill = 4;
+  else {
+    skill = -1;
+  }
+}
+
+function getCountry(regCountry) {
+  switch (regCountry) {
+    case 'Afghanistan':
+      country = 'AF';
+    case 'Åland Islands':
+      country = 'AX';
+    case 'Albania':
+      country = 'Algeria';
+    default:
+      country = '';
+  }
+}
 
 const registrationSucess = (dispatch, regEmail) => {
     return {
@@ -275,6 +339,7 @@ export const regCountryChanged = (text) => {
 };
 
 export const regGenderChanged = (text) => {
+    console.log(text);
     return {
       type: REG_GENDER_CHANGED,
       payload: text

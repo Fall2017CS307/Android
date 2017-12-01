@@ -22,7 +22,10 @@ const INITIAL_STATE = {
   password: '',
   error: '',
   firstName: '',
-  id: ''
+  id: '',
+  regCountry: '',
+  regSkill: '',
+  regGender: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

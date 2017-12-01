@@ -40,8 +40,8 @@ class Registration extends Component {
     this.props.regSkillChanged(text);
   }
   userRegister(){
-    const {firstName, lastName, number, regEmail, regPassword} = this.props;
-    this.props.registerUser({firstName, lastName, number, regEmail, regPassword});
+    const {firstName, lastName, number, regEmail, regPassword, regCountry, regGender, regSkill} = this.props;
+    this.props.registerUser({firstName, lastName, number, regEmail, regPassword, regCountry, regGender, regSkill});
   }
   render(){
     let genderData = [{
@@ -54,13 +54,13 @@ class Registration extends Component {
   let skillData = [{
     value: 'No preference',
       }, {
-    value: 'High School Diploma',
+    value: 'High school',
       }, {
     value: "Bachelors",
     }, {
     value: "Masters",
   }, {
-    value: "Ph.D"
+    value: "PHD"
   }];
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -95,7 +95,7 @@ class Registration extends Component {
           placeholder = "Country"
           placeholderTextColor = 'white'
           onChangeText = {this.onRegCountryChange.bind(this)}
-          value={this.props.regPassword}
+          value={this.props.regCountry}
         />
       </View>
       <TextInput style = {styles.input}
@@ -192,9 +192,9 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = ({ auth }) => {
-  const { firstName, lastName, number, regEmail, regPassword, regCountry} = auth;
+  const { firstName, lastName, number, regEmail, regPassword, regCountry, regGender, regSkill} = auth;
 
-  return { firstName, lastName, number, regEmail, regPassword, regCountry};
+  return { firstName, lastName, number, regEmail, regPassword, regCountry, regGender, regSkill};
 };
 export default connect(mapStateToProps, {
   firstNameChanged, lastNameChanged, numberChanged, regEmailChanged, regPassWordChanged, registerUser, regCountryChanged, regSkillChanged, regGenderChanged
