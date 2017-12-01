@@ -75,11 +75,47 @@ export const filterExperiments = (id, text) => {
     });
     fetch(request)
     .then(function(response){
-      console.log(response);
+      response.text().then(function(responseText){
+        console.log()
+        var exps = JSON.parse(responseText).experiments;
+        if(text=="High school")
+          filterLevel1(dispatch, exps);
+        else if(text == "Bachelors")
+          filterLevel2(dispatch, exps);
+        else if(text == "Masters")
+          filterLevel3(dispatch, exps);
+        else if(text == "PHD")
+          filterLevel4(dispatch, exps);
+      })
     }).catch(function(error){
       console.log(error);
     });
   };
+};
+
+const filterLevel1 = (dispatch, exps) => {
+  dispatch({
+    type: FILTER_EXPERIMENTS_LEVEL1,
+    payload: exps
+  });
+};
+const filterLevel2 = (dispatch, exps) => {
+  dispatch({
+    type: FILTER_EXPERIMENTS_LEVEL2,
+    payload: exps
+  });
+};
+const filterLevel3 = (dispatch, exps) => {
+  dispatch({
+    type: FILTER_EXPERIMENTS_LEVEL3,
+    payload: exps
+  });
+};
+const filterLevel4 = (dispatch, exps) => {
+  dispatch({
+    type: FILTER_EXPERIMENTS_LEVEL4,
+    payload: exps
+  });
 };
 
 const passExperiments = (dispatch, response) => {
