@@ -30,7 +30,12 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PASS_EXPERIMENTS:{
       console.log(action.payload);
-      return {...state, experiments: action.payload, proceedExp: 'go'};
+      return {...state, experiments: action.payload, proceedExp: 'go', isSortedByPrice: 'no', isSortedByTime: 'no',
+      isFilteredLevel1: 'no',
+      isFilteredLevel2: 'no',
+      isFilteredLevel3: 'no',
+      isFilteredLevel4: 'no',
+        };
     }
     case VIEW_EXPERIMENT:
       return {...state, currentExperiment: action.payload};
