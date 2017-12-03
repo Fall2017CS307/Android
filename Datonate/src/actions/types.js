@@ -28,4 +28,4 @@ export const FILTER_EXPERIMENTS_LEVEL3 = 'filter_experiments_level3';
 export const FILTER_EXPERIMENTS_LEVEL4 = 'filter_experiments_level4';
 export const DESC_CHANGED = 'desc_changed';
 export const STORE_BALANCE = 'store_balance';
-export const UPDATE_FILES = 'update_files';
+export const UPDATE_INDEX = 'update_index';

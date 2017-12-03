@@ -1,12 +1,13 @@
 import {
   STORE_FILES,
   DESC_CHANGED,
-  UPDATE_FILES
+  UPDATE_INDEX
 } from '../actions/types';
 
 const INITIAL_STATE = {
   experiments: null,
-  proceedExp: 'no'
+  proceedExp: 'no',
+  index: 0
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,8 +16,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, files: action.payload};
     case DESC_CHANGED:
       return {...state, desc:action.payload}
-    case UPDATE_FILES:
-      return {...state, files:action.payload}
+    case UPDATE_INDEX:
+      return {...state, index:action.payload}
     default:
       return state;
   }
