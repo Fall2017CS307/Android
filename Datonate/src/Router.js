@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import PastExperimentList from './components/PastExperimentList';
 import TextAnnotation from './components/TextAnnotation';
 import ImageAnnotation from './components/ImageAnnotation';
+import Dummy from './components/Dummy'
 
 const RouterComponent = () => {
   return (
@@ -48,6 +49,11 @@ const RouterComponent = () => {
           component={ImageAnnotation}
           titleStyle={{marginLeft: 75}}
           title="Image Annotation"
+          />
+          <Scene key="dummy"
+          component={Dummy}
+          titleStyle={{marginLeft: 75}}
+          title="Loading next Image"
           />
         </Scene>
       </Scene>

@@ -1,7 +1,8 @@
 import {
   STORE_FILES,
   DESC_CHANGED,
-  UPDATE_INDEX
+  UPDATE_INDEX,
+  UPDATE_FILES
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -56,9 +57,22 @@ export const descChanged = (text) => {
   };
 };
 
+export const changeFiles = (files) => {
+  return (dispatch) => {
+    updateIndex(dispatch, files);
+  };
+};
+
+const updateFiles = (dispatch, index) => {
+  dispatch ({
+    type: UPDATE_FILES,
+    payload: index
+  });
+};
 export const changeIndex = (index) => {
   return (dispatch) => {
     updateIndex(dispatch, index);
+    Actions.dummy();
   };
 };
 
