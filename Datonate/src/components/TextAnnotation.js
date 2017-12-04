@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon } from 'native-base';
 import {connect} from 'react-redux';
-import {textDescChanged, changeFiles, changeTextIndex, sendTextData} from '../actions'
+import {textDescChanged, changeFiles, changeTextIndex, sendTextData, clearTask} from '../actions'
 
 class TextAnnotation extends Component<{}> {
 
@@ -21,6 +21,7 @@ class TextAnnotation extends Component<{}> {
   render() {
 
     const {files} = this.props;
+    if(files != null && files.length != 0){
     if(files.length != 0) {
     return (
       <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
@@ -57,32 +58,43 @@ class TextAnnotation extends Component<{}> {
                 </TouchableOpacity>
                 </View>
     );
+  }else {
+    return null;
   }
-  else {
-  return (
-    <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-      <Text style={{ fontSize: 18, color: 'white', marginBottom: '20%' }}>
-        Your task is complete. Thank you.
-      </Text>
-      <TouchableOpacity style={{
-        padding:10,
-        backgroundColor: '#0091EA',
-        width: '70%',
-        }}>
-        <Text style={{
+}
+else {
+return (
+  <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+    <Text style={{ fontSize: 18, color: 'white', marginBottom: '20%' }}>
+      Your task is complete. Thank you.
+    </Text>
+    <TouchableOpacity style={{
+      padding:10,
+      backgroundColor: '#0091EA',
+      width: '70%',
+      }}
+      onPress = {this.return.bind(this)}
+      >
+      <Text style={{
 
-          textAlign: 'center',
-        color: 'white',
-        fontSize: 18 }}>Return</Text>
-      </TouchableOpacity>
-    </View>
-  );
-  }
+        textAlign: 'center',
+      color: 'white',
+      fontSize: 18 }}>Return</Text>
+    </TouchableOpacity>
+  </View>
+);
+}
+}
+
+return() {
+  this.props.clearTask();
+  Actions.experimentList();
 }
 
 submit() {
   if(this.props.textDesc !== '' && this.props.textDesc !== 'Description'){
-    const {index, files, textDesc} = this.props;
+    const {index, files, textDesc, batchID} = this.props;
+    console.log(batchID);
     var toChange = files;
     var toIncrease = index;
     toIncrease++;
@@ -90,7 +102,7 @@ submit() {
     console.log(toChange);
     this.props.changeFiles(toChange);
     this.props.changeTextIndex(toIncrease);
-    this.props.sendTextData(this.props.textDesc);
+    this.props.sendTextData(this.props.textDesc, batchID);
   }else {
     alert("Description box cannot be empty. Plesae try again.")
   }
@@ -99,6 +111,7 @@ submit() {
 }
 const mapStateToProps = ({tasks}) => {
   const {files, textDesc, index, batchID} = tasks;
+  console.log(batchID);
   return {files, textDesc, index, batchID};
 };
 const styles = StyleSheet.create({
@@ -149,4 +162,4 @@ const styles = StyleSheet.create({
   }
 });
 // Exporting Component
-export default connect(mapStateToProps, {textDescChanged, changeFiles, changeTextIndex, sendTextData})(TextAnnotation);
+export default connect(mapStateToProps, {textDescChanged, changeFiles, changeTextIndex, sendTextData, clearTask})(TextAnnotation);

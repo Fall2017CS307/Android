@@ -127,7 +127,7 @@ export const sendData = (imageData, imageText, batchID) => {
     fetch(req)
     .then(function(response){
       console.log(response);
-      clearDesc();
+      clearDesc(dispatch);
     })
     .catch(function(response){
 
@@ -135,17 +135,29 @@ export const sendData = (imageData, imageText, batchID) => {
   };
 };
 
-const clearDesc = () => {
-    return {
+const clearDesc = (dispatch) => {
+    dispatch( {
       type: CLEAR_DESC,
-    }
+    });
 }
 
-export const sendTextData = (text) => {
+export const sendTextData = (text, batchID) => {
   return (dispatch) => {
-  clearTextDesc(dispatch);
+    var qur = "http://datonate.com:5000/api/submitBatchRowText/" + batchID;
+    console.log(qur);
+    var req = new Request(qur, {method:'POST', body: JSON.stringify({
+      response: text
+    })})
+    fetch(req)
+    .then(function(response){
+      console.log(response);
+      clearTextDesc(dispatch);
+    })
+    .catch(function(response){
+
+    });
   };
-}
+};
 const clearTextDesc = (dispatch) => {
     dispatch( {
       type: CLEAR_TEXT_DESC,

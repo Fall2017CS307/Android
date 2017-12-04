@@ -89,6 +89,7 @@ onDescChange(text) {
 render() {
 
   const {files, index} = this.props;
+  if(files != null && files.length !=0){
   if(files.length != 0){
   var toShow = files[0].link;
   console.log(toShow);
@@ -132,7 +133,8 @@ render() {
 
 
   )
-} else {
+}
+}else {
   return (
     <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
       <Text style={{ fontSize: 18, color: 'white', marginBottom: '20%' }}>
