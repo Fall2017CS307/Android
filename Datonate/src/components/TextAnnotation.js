@@ -28,13 +28,20 @@ class TextAnnotation extends Component<{}> {
 
     return (
       <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
-                <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '20%' }}>Lorem ipsum dolor sit amet,
+
+        <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '5%', textAlign: 'center' }}>
+        Describe your emotions after reading this shit -</Text>
+
+
+                <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '10%' }}>Lorem ipsum dolor sit amet,
                 eu hinc posidonium theophrastus vix,
                 tantas oporteat eu vix. Ius no unum vero
                 liberavisse, ad aeterno virtute quo. Ut agam soleat
                 ancillae vel, mel graeco oblique luptatum ad. Soluta
                 noster his ne, magna dolor tacimates et per. Tempor
                 antiopam et eum.</Text>
+
+                
                 <TextInput style={{
                   paddingLeft: '4%',
                   marginTop: '10%',

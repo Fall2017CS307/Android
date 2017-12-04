@@ -30,10 +30,7 @@ export const assignExperiment = (userID, experimentID) => {
                   var files = res1.files;
                   console.log(files);
                   storeFiles(dispatch, files);
-                  if(res.isMedia == tre)
                     Actions.imageAnnotation();
-                  else
-                    Actions.textAnnotation();
                 })
             }).catch(function(error){
               console.log(error);
