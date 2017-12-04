@@ -27,24 +27,11 @@ class ExperimentItem extends Component{
             </CardItem>
             <CardItem style={{ backgroundColor: '#f4f4f4' }}>
               <Left>
-                  <Text>
-                    <Icon active name="time" style={{ fontSize: 19, color: '#FFCC00' }} />
-                    <Text> </Text>
-                    <Text style={{ fontSize: 18, color: 'black' }}>11/28</Text>
-                  </Text>
-              </Left>
-              <Body>
-                <Text>
-                  <Icon active name="cash" style={{ fontSize: 19, color: '#85bb65' }} />
-                  <Text style={{ fontSize: 18, color: 'black' }}>  ${ experiment.price }</Text>
-                </Text>
-              </Body>
-              <Right>
                 <Text>
                   <Icon active name="star" style={{ fontSize: 19, color: '#a90000' }} />
                   <Text style={{ fontSize: 18, color: 'black' }}> { experiment.rating }/5</Text>
                 </Text>
-              </Right>
+              </Left>
             </CardItem>
           </Card>
         </Content>

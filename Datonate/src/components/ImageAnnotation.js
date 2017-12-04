@@ -12,7 +12,8 @@ import {
 import { Container, Header, Card, CardItem, DeckSwiper, Thumbnail, Left, Body, Icon } from 'native-base';
 import {ImageCrop} from 'react-native-image-cropper';
 import {connect} from 'react-redux';
-import {descChanged, changeIndex, changeFiles, sendData} from '../actions'
+import { Actions } from 'react-native-router-flux';
+import {descChanged, changeIndex, changeFiles, sendData, clearTask} from '../actions'
 
 class ImageAnnotation extends Component<{}> {
 //   constructor(props) {
@@ -141,15 +142,21 @@ render() {
         padding:10,
         backgroundColor: '#0091EA',
         width: '70%',
-        textAlign: 'center',
-        }}>
+        }}
+        onPress = {this.return.bind(this)}
+        >
         <Text style={{
+          textAlign: 'center',
         color: 'white',
         fontSize: 18 }}>Return</Text>
       </TouchableOpacity>
     </View>
   )
 }
+}
+return() {
+  this.props.clearTask();
+  Actions.experimentList();
 }
 capture(){
   if(this.props.desc != 'Description'){
@@ -174,4 +181,4 @@ const mapStateToProps = ({tasks}) => {
   const {files, desc, index, batchID} = tasks;
   return {files, desc, index, batchID};
 }
-export default connect(mapStateToProps, {descChanged, changeIndex, changeFiles, sendData})(ImageAnnotation);
+export default connect(mapStateToProps, {descChanged, changeIndex, changeFiles, sendData, clearTask})(ImageAnnotation);

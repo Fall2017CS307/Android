@@ -3,7 +3,11 @@ import {
   DESC_CHANGED,
   UPDATE_INDEX,
   UPDATE_FILES,
-  SAVE_BATCH_ID
+  SAVE_BATCH_ID,
+  TEXT_DESC_CHANGED,
+  CLEAR_TASK,
+  CLEAR_DESC,
+  CLEAR_TEXT_DESC
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -27,10 +31,19 @@ export const assignExperiment = (userID, experimentID) => {
                 response.text().then(function(resText){
                   var res1 = JSON.parse(resText);
                   console.log(res1);
-                  var files = res1.files;
-                  console.log(files);
-                  storeFiles(dispatch, files);
+                  if(res1.files != undefined){
+                    console.log("IMAGE");
+                    var files = res1.files;
+                    console.log(files);
+                    storeFiles(dispatch, files);
                     Actions.imageAnnotation();
+                  }
+                  else{
+                    var data = res1.data;
+                    console.log(data);
+                    storeFiles(dispatch, data);
+                    Actions.textAnnotation();
+                  }
                 })
             }).catch(function(error){
               console.log(error);
@@ -84,11 +97,24 @@ export const changeIndex = (index) => {
   };
 };
 
+export const changeTextIndex = (index) => {
+  return (dispatch) => {
+    updateIndex(dispatch, index);
+    Actions.textDummy();
+  };
+};
 const updateIndex = (dispatch, index) => {
   dispatch ({
     type: UPDATE_INDEX,
     payload: index
   });
+};
+
+export const textDescChanged = (text) => {
+  return {
+    type: TEXT_DESC_CHANGED,
+    payload: text
+  };
 };
 
 export const sendData = (imageData, imageText, batchID) => {
@@ -101,9 +127,33 @@ export const sendData = (imageData, imageText, batchID) => {
     fetch(req)
     .then(function(response){
       console.log(response);
+      clearDesc();
     })
     .catch(function(response){
 
     });
   };
 };
+
+const clearDesc = () => {
+    return {
+      type: CLEAR_DESC,
+    }
+}
+
+export const sendTextData = (text) => {
+  return (dispatch) => {
+  clearTextDesc(dispatch);
+  };
+}
+const clearTextDesc = (dispatch) => {
+    dispatch( {
+      type: CLEAR_TEXT_DESC,
+    });
+};
+
+export const clearTask = () => {
+    return {
+      type: CLEAR_TASK,
+    }
+}

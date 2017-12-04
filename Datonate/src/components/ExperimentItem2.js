@@ -34,20 +34,13 @@ class ExperimentItem extends Component{
                   </Text>
               </Left>
               <Body>
+              </Body>
+              <Right>
                 <TouchableOpacity onPress={this.onSelectPress.bind(this)}>
                   <Text>
                     <Text> </Text>
                     <Icon active name="play" style={{ fontSize: 19, color: '#007FFF' }} />
                     <Text style={{ fontSize: 18, color: '#007FFF' }}>  Resume</Text>
-                  </Text>
-                </TouchableOpacity>
-              </Body>
-              <Right>
-                <TouchableOpacity onPress={this.onSelectPress.bind(this)}>
-                  <Text>
-                    <Text>     </Text>
-                    <Icon active name="close-circle" style={{ fontSize: 19, color: '#a90000' }} />
-                    <Text style={{ fontSize: 18, color: '#a90000' }}>  Cancel</Text>
                   </Text>
                 </TouchableOpacity>
               </Right>

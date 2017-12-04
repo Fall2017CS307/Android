@@ -10,38 +10,30 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon } from 'native-base';
-
+import {connect} from 'react-redux';
+import {textDescChanged, changeFiles, changeTextIndex, sendTextData} from '../actions'
 
 class TextAnnotation extends Component<{}> {
+
+  onTextDescChange(text) {
+    this.props.textDescChanged(text);
+  }
   render() {
 
-    const cards = [
-  {
-    text: 'Card One',
-    name: 'One',
-  },
-  {
-    text: 'Card Two',
-    name: 'Two',
-  },
-];
-
+    const {files} = this.props;
+    if(files.length != 0) {
     return (
       <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
 
         <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '5%', textAlign: 'center' }}>
-        Describe your emotions after reading this shit -</Text>
+        {this.props.files[0].addInfo} -</Text>
 
 
-                <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '10%' }}>Lorem ipsum dolor sit amet,
-                eu hinc posidonium theophrastus vix,
-                tantas oporteat eu vix. Ius no unum vero
-                liberavisse, ad aeterno virtute quo. Ut agam soleat
-                ancillae vel, mel graeco oblique luptatum ad. Soluta
-                noster his ne, magna dolor tacimates et per. Tempor
-                antiopam et eum.</Text>
+                <Text style={{ color: 'white', fontSize: 15, width: '80%', marginTop: '10%' }}>
+                  {this.props.files[0].question}
+                </Text>
 
-                
+
                 <TextInput style={{
                   paddingLeft: '4%',
                   marginTop: '10%',
@@ -52,21 +44,62 @@ class TextAnnotation extends Component<{}> {
                   fontSize: 15 }}
                   placeholder = "Description"
                   placeholderTextColor = 'white'
+                  onChangeText = {this.onTextDescChange.bind(this)}
+                  value={this.props.textDesc}
                 />
                 <TouchableOpacity style={{
                   marginTop: '20%',
                   padding: 10,
                   backgroundColor: '#0091EA',
-                  width: '80%'}}>
+                  width: '80%'}}
+                  onPress={this.submit.bind(this)}>
                   <Text style={{ color: 'white', textAlign: 'center' }}>Submit</Text>
                 </TouchableOpacity>
                 </View>
     );
   }
+  else {
+  return (
+    <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+      <Text style={{ fontSize: 18, color: 'white', marginBottom: '20%' }}>
+        Your task is complete. Thank you.
+      </Text>
+      <TouchableOpacity style={{
+        padding:10,
+        backgroundColor: '#0091EA',
+        width: '70%',
+        }}>
+        <Text style={{
+
+          textAlign: 'center',
+        color: 'white',
+        fontSize: 18 }}>Return</Text>
+      </TouchableOpacity>
+    </View>
+  );
+  }
+}
+
+submit() {
+  if(this.props.textDesc !== '' && this.props.textDesc !== 'Description'){
+    const {index, files, textDesc} = this.props;
+    var toChange = files;
+    var toIncrease = index;
+    toIncrease++;
+    toChange.shift();
+    console.log(toChange);
+    this.props.changeFiles(toChange);
+    this.props.changeTextIndex(toIncrease);
+    this.props.sendTextData(this.props.textDesc);
+  }else {
+    alert("Description box cannot be empty. Plesae try again.")
+  }
+}
+
 }
 const mapStateToProps = ({tasks}) => {
-  const {files} = tasks;
-  return {files};
+  const {files, textDesc, index, batchID} = tasks;
+  return {files, textDesc, index, batchID};
 };
 const styles = StyleSheet.create({
   container: {
@@ -116,4 +149,4 @@ const styles = StyleSheet.create({
   }
 });
 // Exporting Component
-export default TextAnnotation;
+export default connect(mapStateToProps, {textDescChanged, changeFiles, changeTextIndex, sendTextData})(TextAnnotation);

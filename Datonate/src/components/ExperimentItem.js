@@ -22,7 +22,7 @@ class ExperimentItem extends Component{
               <Left>
                 <Body>
                   <Text style={{ fontSize: 22, color: 'black' }}>{experiment.description}{"\n"}</Text>
-                
+
                 </Body>
               </Left>
             </CardItem>
@@ -42,13 +42,6 @@ class ExperimentItem extends Component{
                   </Text>
                 </TouchableOpacity>
               </Body>
-              <Right>
-                  <Text>
-                    <Icon active name="time" style={{ fontSize: 19, color: '#FFCC00' }} />
-                    <Text> </Text>
-                    <Text style={{ fontSize: 18, color: 'black' }}>11/28</Text>
-                  </Text>
-              </Right>
             </CardItem>
           </Card>
         </Content>

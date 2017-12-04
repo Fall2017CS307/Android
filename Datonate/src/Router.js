@@ -8,7 +8,8 @@ import Dashboard from './components/Dashboard';
 import PastExperimentList from './components/PastExperimentList';
 import TextAnnotation from './components/TextAnnotation';
 import ImageAnnotation from './components/ImageAnnotation';
-import Dummy from './components/Dummy'
+import Dummy from './components/Dummy';
+import TextDummy from './components/TextDummy';
 
 const RouterComponent = () => {
   return (
@@ -54,6 +55,11 @@ const RouterComponent = () => {
           component={Dummy}
           titleStyle={{marginLeft: 75}}
           title="Loading next Image"
+          />
+          <Scene key="textDummy"
+          component={TextDummy}
+          titleStyle={{marginLeft: 75}}
+          title="Loading next Text piece"
           />
         </Scene>
       </Scene>
