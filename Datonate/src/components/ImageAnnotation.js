@@ -133,12 +133,26 @@ render() {
   )
 } else {
   return (
-    <Text> Your task is completed. Thank you! </Text>
+    <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+      <Text style={{ fontSize: 18, color: 'white', marginBottom: '20%' }}>
+        Your task is complete. Thank you.
+      </Text>
+      <TouchableOpacity style={{
+        padding:10,
+        backgroundColor: '#0091EA',
+        width: '70%',
+        textAlign: 'center',
+        }}>
+        <Text style={{
+        color: 'white',
+        fontSize: 18 }}>Return</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 }
 capture(){
-  if(this.props.desc != ''){
+  if(this.props.desc != 'Description'){
     this.refs.cropper.crop()
     .then(base64 => this.props.sendData(base64, this.props.desc, this.props.batchID))
     const {files, index} = this.props;

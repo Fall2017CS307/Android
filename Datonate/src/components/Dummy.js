@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import {Spinner} from 'native-base';
 
 class Dummy extends Component {
   loadImage() {
@@ -9,7 +10,10 @@ class Dummy extends Component {
   render() {
     this.loadImage();
     return (
-      <Text> Image is being loaded </Text>
+      <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <Text style={{ color: 'white', fontSize: 24, marginBottom: '20%' }}>The next image is loading</Text>
+        <Spinner color='white' />
+      </View>
     )
   }
 }
