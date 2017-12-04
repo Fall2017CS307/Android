@@ -11,7 +11,7 @@ class TextDummy extends Component {
     this.loadText();
     return (
       <View style={{ backgroundColor: '#263238', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-        <Text style={{ color: 'white', fontSize: 24, marginBottom: '20%' }}>The next image is loading</Text>
+        <Text style={{ color: 'white', fontSize: 24, marginBottom: '20%' }}>The next text piece is loading</Text>
         <Spinner color='white' />
       </View>
     )

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Container, Header, DeckSwiper, Card, CardItem, Thumbnail, Left, Body, Icon } from 'native-base';
 import {connect} from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import {textDescChanged, changeFiles, changeTextIndex, sendTextData, clearTask} from '../actions'
 
 class TextAnnotation extends Component<{}> {
