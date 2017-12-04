@@ -12,7 +12,7 @@ import {
 import { Container, Header, Card, CardItem, DeckSwiper, Thumbnail, Left, Body, Icon } from 'native-base';
 import {ImageCrop} from 'react-native-image-cropper';
 import {connect} from 'react-redux';
-import {descChanged, changeIndex} from '../actions'
+import {descChanged, changeIndex, changeFiles} from '../actions'
 
 class ImageAnnotation extends Component<{}> {
 //   constructor(props) {
@@ -88,13 +88,17 @@ onDescChange(text) {
 render() {
 
   const {files, index} = this.props;
+  alert(index);
+  var toShow = files[0].link;
+  console.log(toShow);
+
   return (
     <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
       <Text style={{ paddingTop: '5%' }}></Text>
       <ImageCrop
       style={{ width: '100%', height: '60%' }}
         ref={'cropper'}
-        image={files[index].link}
+        image={toShow}
         cropHeight={200}
         cropWidth={300}
         zoom={50}
@@ -132,9 +136,13 @@ render() {
 capture(){
   this.refs.cropper.crop()
   .then(base64 => console.log("1s"))
-  const {index} = this.props;
+  const {files, index} = this.props;
+  var toChange = files;
   var toIncrease = index;
   toIncrease++;
+  toChange.shift();
+  console.log(toChange);
+  this.props.changeFiles(toChange);
   this.props.changeIndex(toIncrease);
 }
 
@@ -142,7 +150,6 @@ capture(){
 
 const mapStateToProps = ({tasks}) => {
   const {files, desc, index} = tasks;
-  console.log(index);
   return {files, desc, index};
 }
-export default connect(mapStateToProps, {descChanged, changeIndex})(ImageAnnotation);
+export default connect(mapStateToProps, {descChanged, changeIndex, changeFiles})(ImageAnnotation);
