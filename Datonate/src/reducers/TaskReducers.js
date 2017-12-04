@@ -2,7 +2,8 @@ import {
   STORE_FILES,
   DESC_CHANGED,
   UPDATE_INDEX,
-  UPDATE_FILES
+  UPDATE_FILES,
+  SAVE_BATCH_ID
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -21,6 +22,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, files:action.payload}
     case UPDATE_INDEX:
       return {...state, index:action.payload}
+    case SAVE_BATCH_ID:
+      return {...state, batchID:action.payload}
     default:
       return state;
   }

@@ -14,7 +14,7 @@ import {
   EMAIL_CHANGED_RESET,
   REG_COUNTRY_CHANGED,
   REG_GENDER_CHANGED,
-  REG_SKILL_CHANGED
+  REG_SKILL_CHANGED,
 } from '../actions/types';
 
 const INITIAL_STATE = {

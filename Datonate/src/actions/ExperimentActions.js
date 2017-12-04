@@ -7,7 +7,8 @@ import {
   FILTER_EXPERIMENTS_LEVEL2,
   FILTER_EXPERIMENTS_LEVEL3,
   FILTER_EXPERIMENTS_LEVEL4,
-  STORE_BALANCE
+  STORE_BALANCE,
+  CLEAR_EXPERIMENTS
 } from '../actions/types';
 import { Actions } from 'react-native-router-flux';
 
@@ -191,6 +192,11 @@ export const selectExperiment = (experiment) => {
   };
 };
 
+export const clearExperiments = () => {
+    return {
+      type: CLEAR_EXPERIMENTS,
+    }
+}
 
 const addExpToState = (dispatch, experiment) => {
   console.log("AETS");

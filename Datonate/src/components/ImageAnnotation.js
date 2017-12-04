@@ -12,7 +12,7 @@ import {
 import { Container, Header, Card, CardItem, DeckSwiper, Thumbnail, Left, Body, Icon } from 'native-base';
 import {ImageCrop} from 'react-native-image-cropper';
 import {connect} from 'react-redux';
-import {descChanged, changeIndex, changeFiles} from '../actions'
+import {descChanged, changeIndex, changeFiles, sendData} from '../actions'
 
 class ImageAnnotation extends Component<{}> {
 //   constructor(props) {
@@ -88,10 +88,9 @@ onDescChange(text) {
 render() {
 
   const {files, index} = this.props;
-  alert(index);
+  if(files.length != 0){
   var toShow = files[0].link;
   console.log(toShow);
-
   return (
     <View style={{ backgroundColor: '#263238', alignItems: 'center', flex: 1 }}>
       <Text style={{ paddingTop: '5%' }}></Text>
@@ -132,24 +131,33 @@ render() {
 
 
   )
+} else {
+  return (
+    <Text> Your task is completed. Thank you! </Text>
+  )
+}
 }
 capture(){
-  this.refs.cropper.crop()
-  .then(base64 => console.log("1s"))
-  const {files, index} = this.props;
-  var toChange = files;
-  var toIncrease = index;
-  toIncrease++;
-  toChange.shift();
-  console.log(toChange);
-  this.props.changeFiles(toChange);
-  this.props.changeIndex(toIncrease);
+  if(this.props.desc != ''){
+    this.refs.cropper.crop()
+    .then(base64 => this.props.sendData(base64, this.props.desc, this.props.batchID))
+    const {files, index} = this.props;
+    var toChange = files;
+    var toIncrease = index;
+    toIncrease++;
+    toChange.shift();
+    console.log(toChange);
+    this.props.changeFiles(toChange);
+    this.props.changeIndex(toIncrease);
+  } else {
+    alert("Text box cannot be empty. Please try again.")
+  }
 }
 
 }
 
 const mapStateToProps = ({tasks}) => {
-  const {files, desc, index} = tasks;
-  return {files, desc, index};
+  const {files, desc, index, batchID} = tasks;
+  return {files, desc, index, batchID};
 }
-export default connect(mapStateToProps, {descChanged, changeIndex, changeFiles})(ImageAnnotation);
+export default connect(mapStateToProps, {descChanged, changeIndex, changeFiles, sendData})(ImageAnnotation);

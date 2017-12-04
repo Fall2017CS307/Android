@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ListView, View, Text, DrawerLayoutAndroid, TouchableOpacity} from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import ExperimentItem from './ExperimentItem';
-import {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance} from '../actions';
+import {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance, clearExperiments} from '../actions';
 import { Actions } from 'react-native-router-flux';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -42,15 +42,19 @@ class ExperimentList extends Component{
     }
   }
   onSelectView() {
+    this.props.clearExperiments();
     Actions.experimentList();
   }
   onSelectDash() {
+    this.props.clearExperiments();
     Actions.userList();
   }
   onSelectPast() {
+    this.props.clearExperiments();
     Actions.pastUserList();
   }
   onSelectLogOut() {
+    this.props.clearExperiments();
     this.props.logOutUser();
     Actions.auth();
   }
@@ -187,4 +191,4 @@ const mapStateToProps = ({ exp, auth }) => {
   //console.log(auth.id);
   return {experiments, proceedExp, id, sortedExperimentsByPrice, sortedExperimentsByTime, isSortedByPrice, isSortedByTime, isFilteredLevel1, isFilteredLevel2, isFilteredLevel3, isFilteredLevel4,  filterExperimentsLevel2, filterExperimentsLevel3, filterExperimentsLevel4, filterExperimentsLevel1, balance};
 }
-export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance})(ExperimentList);
+export default connect(mapStateToProps, {viewExperiments, sortExperimentsByPrice, sortExperimentsByTime, logOutUser, filterExperiments, getBalance, clearExperiments})(ExperimentList);

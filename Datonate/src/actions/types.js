@@ -30,3 +30,5 @@ export const DESC_CHANGED = 'desc_changed';
 export const STORE_BALANCE = 'store_balance';
 export const UPDATE_INDEX = 'update_index';
 export const UPDATE_FILES = 'update_files';
+export const SAVE_BATCH_ID = 'save_batch_id';
+export const CLEAR_EXPERIMENTS = 'clear_experiments'
